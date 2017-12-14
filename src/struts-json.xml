@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	 <!--  <package name="jsondemo" namespace="/" extends="struts-json">
+		<action name="jsontest" class="com.sys.volunteer.test.JsonAction">
+			<result type="json"/>
+		</action>
+		
+		<action name="addServiceLog" class="missionServiceLogAction" method="saveServiceLog">
+			<result type="json"/>
+		</action>
+		
+		<action name="attendance" class="missionServiceLogAction" method="attendanceRecvice">
+			<result type="json"/>
+		</action>
+		
+	</package>
+	
+	<package name="ajax" namespace="/ajax" extends="struts-json">
+		<action name="attendanceOnes" class="missionServiceLogAction" method="saveServiceLog">
+			<result type="json"/>
+		</action>
+		
+		<action name="attendanceMachine" class="missionServiceLogAction" method="attendanceRecvice">
+			<result type="json"/>
+		</action>
+		
+		<action name="saveServiceLogForMachine" class="missionServiceLogAction" method="saveServiceLogForMachine">
+			<result type="json"/>
+		</action> -->
+		
+		<!-- http://localhost:8080/VolunteerManage/ajax/getTeamByName.do?searchTeamName=OST-1-01&searchMissionId=27 -->
+	<!--  	<action name="getTeamByName" class="missionTeamJson" method="getTeamByName">
+			<result type="json"/>
+		</action>
+	</package>-->
+	
+	<package name="json" namespace="/" extends="struts-json">
+		<action name="changeServer" class="com.sys.volunteer.system.SystemAction" method="changeServer">
+	 		<result name="json" type="json"></result>
+	 	</action>
+	</package>
+</struts>

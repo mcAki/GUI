@@ -1,0 +1,267 @@
+@charset "utf-8";
+
+.list_tb {
+	height: 16px;
+	line-height: 16px;
+	font-size: 12px;
+	font-weight: normal;
+	color: #333;
+	background-color: #CCC;
+	text-align: center;
+	border: double 3px #446633;
+	border-collapse: collapse;	
+}
+
+.list_tb caption {
+	height: 20px;
+	font-size: 16px;
+	line-height: 20px;
+	text-align: center;
+	font-weight: bold;
+	color: #030;
+}
+
+.list_tb th {
+	background-color: #A7D692;
+	height: 20px;
+	font-size: 14px;
+	line-height: 20px;
+	text-align: center;
+	font-weight: bold;
+	color: #060;
+	background-image:url(../images/tb_header.gif);
+	border-bottom:solid 1px #446633;
+}
+
+.list_tb tr {
+	/*    background-color: expression((this.sectionRowIndex % 2 == 0) ? "#f0f0f0" : "#e0e0e0");
+*/
+	
+}
+
+.list_tb .odd {
+	background-color: #EEFFEE;
+}
+
+.list_tb .even {
+	background-color: #DDFFDD;
+}
+
+.list_tb td {
+	padding: 2px;
+}
+
+.list_tb .column_hide {
+	display: none;
+}
+
+.list_tb .column {
+	display: block;
+}
+
+.pagebanner { /*翻页表格标题头*/
+	font-size: 12px;
+	line-height: 20px;
+}
+
+.pagelinks { /*翻页表格翻页连接*/
+	font-size: 12px;
+	line-height: 20px;
+}
+
+.pagelinks .selected { /*元素*/
+	color: #F60;
+}
+
+.pagelinks .numberSelected { /*选定的页码*/
+	font-weight: bold;
+	color: #F60;
+}
+
+.pagelinks .number { /*未选定的页码*/
+	
+}
+
+.list_tb .empty {
+	color: #F00;
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.list_tb exportlinks {
+	
+}
+
+.list_tb #paginate {
+	background-color: #39C;
+	height: 20px;
+	font-size: 14px;
+	line-height: 20px;
+	text-align: right;
+	padding-right: 5px;
+	color: #036;
+}
+
+.form_tb {
+	height: 16px;
+	line-height: 16px;
+	font-size: 12px;
+	font-weight: normal;
+	color: #333;
+	background-color: #FFF;
+	text-align: center;
+	border: double 3px #446633;
+	border-collapse: collapse;
+}
+
+.form_tb caption {
+	height: 20px;
+	font-size: 14px;
+	line-height: 20px;
+	text-align: center;
+	font-weight: bold;
+	color: #060;
+}
+
+.form_tb th {
+	background-color: #FFF;
+	height: 20px;
+	font-size: 14px;
+	line-height: 20px;
+	text-align: center;
+	font-weight: bold;
+	color: #036;	
+}
+
+.form_tb td {
+	color: 333;
+	padding: 3px;
+}
+
+/*
+.form_tb input {
+	border-style:none;
+	border-color:"#006600";
+	border-width:0px 0px 1px 0px;
+	border-style:expression(this.type=="text"?"solid":border-style);
+	background-color:expression(this.type=="text"?"#FAFFFA":"transparent");
+}
+
+.form_tb input[type="radio"]{
+	border:none;
+	border-color:transparent;
+}
+.form_tb input[type="checkbox"]{
+	border:none;
+	border-color:transparent;
+}
+
+.form_tb input[type="text"]{
+	border:solid;
+	border-width:0px 0px 1px 0px;
+	border-color:"#006600";
+	background-color:#FAFFFA;
+}
+
+button{
+	BORDER:#7EBF4F 1px solid;
+	FONT-SIZE:12px;
+	CURSOR:hand;
+	COLOR:black;
+	PADDING-TOP:2px;
+	background-color:#B3D997;
+	FILTER:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#B3D997);
+}
+
+
+.form_tb textarea{
+	overflow:auto;
+}
+*/
+
+/*border-style:expression( this.type == "radio" ? "none" : "solid" );*/
+.msgMessage{
+	font-size:16px;
+	font-weight:bold;
+	color:#F60;		
+}
+.msgAutoRedirct{
+	font-size:12px;
+	color:#666;
+}
+.msgLinks{
+	
+}
+.msgLinks ul{
+	
+}
+.msgLinks li{
+	
+}
+.msgLinks a{
+	
+}
+.errorMessage { /*Struts错误信息*/
+	font-weight: bold;
+	color: #F00;
+}
+
+.txtW1 {
+	width: 100px;
+}
+
+.txtW2 {
+	width: 150px;
+}
+
+.txtW3 {
+	width: 200px;
+}
+
+.txtW4 {
+	width: 300px;
+}
+
+.txtW5 {
+	width: 500px;
+}
+
+.fs {
+	border: 1px solid #390;
+	FONT-SIZE: 12px;
+	font-family: Verdana;
+	padding: 5px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+}
+
+.fs legend {
+	color: #060;
+	font-weight: bold;
+}
+
+.nowrap{
+	white-space: nowrap;
+}
+
+.group{
+	color:#FF0000;
+}
+
+.lochus{
+	color:#FF6600;
+}
+
+.team{
+	color:#DD9900;
+}
+
+.leader{
+	color:#FF6600;
+}
+.subleader{
+	color:#0000FF;
+}
+.assleader{
+	color:#0000FF;
+}

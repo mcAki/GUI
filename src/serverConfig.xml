@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<Game>
+	<!-- 这个是测试类，没用的 -->
+		<property name="u1" value="custconfig" />
+        <property name="u2" value="企业信息处理" />
+        <property name="u3" value="custconfig" />
+        <property name="f4" value="100"/>
+        <endgameVp>5</endgameVp>
+	</Game>
+	
+	<PlatformConfig>
+		<searchingPackage>com.http</searchingPackage>
+	</PlatformConfig>
+	
+	<DatabaseConfig>
+		<driverClass>com.mysql.jdbc.Driver</driverClass>
+		<jdbcURL>jdbc:mysql://172.16.8.200:3306/gmsystemdb?useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;failOverReadOnly=false&amp;maxReconnects=10</jdbcURL>
+		<userName>root</userName>
+		<password>123456</password>
+		<maxStatements>180</maxStatements>
+		<minPoolSize>10</minPoolSize>
+		<acquireIncrement>3</acquireIncrement>
+		<maxPoolSize>100</maxPoolSize>
+		<numHelperThreads>10</numHelperThreads>
+	</DatabaseConfig>
+	
+</config>

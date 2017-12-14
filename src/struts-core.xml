@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="struts-core" abstract="true" extends="struts-default">
+		<!-- 常用拦截器 -->
+		<interceptors>
+			<interceptor name="sessionInterceptor"
+				class="com.sys.volunteer.interceptor.SessionInterceptor" />
+			<interceptor name="exceptionInterceptor"
+				class="com.sys.volunteer.interceptor.ExceptionInterceptor" />
+			<interceptor name="timeStatisticInterceptor"
+				class="com.sys.volunteer.interceptor.TimeStatisticInterceptor" />
+				
+			<interceptor name="permissionInterceptor"
+				class="com.sys.volunteer.interceptor.PermissionInterceptor" />
+			<interceptor-stack name="core-stack">
+				<interceptor-ref name="defaultStack" />
+				<!--
+					<interceptor-ref name="token"/> <interceptor-ref
+					name="token-session"/>
+				-->
+				<interceptor-ref name="sessionInterceptor" />
+				<interceptor-ref name="exceptionInterceptor" />
+				<interceptor-ref name="timeStatisticInterceptor" />
+				<interceptor-ref name="permissionInterceptor" />				
+			</interceptor-stack>
+			<interceptor-stack name="token-stack">
+				<interceptor-ref name="core-stack" /><!-- 默认拦截器 -->
+				<interceptor-ref name="token" /><!-- token拦截器 -->
+			</interceptor-stack>
+			<interceptor-stack name="fileUpload-stack">
+				<interceptor-ref name="core-stack" />
+				<interceptor-ref name="fileUpload">
+					<param name="allowedTypes">
+						application/excel,application/vnd.ms-excel,image/bmp,image/png,image/gif,image/jpeg,image/pjpeg,image/jpg
+				</param>
+					<param name="maximumSize">512000</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="core-stack" />
+
+		<global-results>
+			<!-- 设置全局异常处理result -->
+			<result name="exception">/common/error.jsp</result>
+			<!-- 设置全局错误处理result -->
+			<result name="error">/common/error.jsp</result>
+			<!-- 设置全局javascript提示result -->
+			<result name="jsmessage"></result>
+			<!-- 设置权限页面 -->
+			<result name="nopermission" type="redirect">/nopermission.jsp</result>
+			<!-- 设置登录页面 -->
+			<result name="index" type="redirect">/login.do</result>
+			<!-- 设置选择服务器id页面 -->
+			<result name="noserver" type="redirect">/noserver.do</result>
+			<!-- 设置消息显示页面 -->
+			<result name="showmessage">/common/message.jsp</result>
+			<!-- 设置消息显示页面 -->
+			<result name="nopermission">/common/message.jsp</result>
+		</global-results>
+
+		<!-- 设置全局异常处理方法 -->
+		<global-exception-mappings>
+			<exception-mapping name="exception"
+				exception="com.sys.volunteer.exception.SystemException" result="exception"></exception-mapping>
+		</global-exception-mappings>
+	</package>
+
+	<package name="struts-json" abstract="true" extends="json-default">
+		<!-- ajax拦截器 -->
+		<interceptors>
+			<interceptor name="sessionInterceptor"
+				class="com.sys.volunteer.interceptor.SessionInterceptor" />
+			<interceptor name="exceptionInterceptor"
+				class="com.sys.volunteer.interceptor.ExceptionInterceptor" />
+			<interceptor name="timeStatisticInterceptor"
+				class="com.sys.volunteer.interceptor.TimeStatisticInterceptor" />
+			<interceptor name="permissionInterceptor"
+				class="com.sys.volunteer.interceptor.PermissionInterceptor" />				
+			<interceptor-stack name="json-stack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="sessionInterceptor" />
+				<interceptor-ref name="exceptionInterceptor" />
+				<interceptor-ref name="permissionInterceptor" />
+				<interceptor-ref name="timeStatisticInterceptor" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="json-stack" />
+
+		<global-results>
+			<result type="json" />
+		</global-results>
+	</package>
+</struts>

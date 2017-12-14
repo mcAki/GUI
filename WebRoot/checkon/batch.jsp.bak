@@ -1,0 +1,32 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ include file="../common/incPrefix.jsp"%>
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<%@ include file="../common/incHead.jsp"%>
+		<link href="../css/criteria.css" rel="stylesheet" type="text/css">
+		<link href="../css/sys.css" rel="stylesheet" type="text/css">
+
+		<script type="text/javascript">
+
+</script>
+		<style type="text/css">
+
+</style>
+	</head>
+	<body>
+		<center>
+			<%@ include file="../common/incBanner.jsp"%>
+			<s:form id="strutsForm" action="doUpdate" namespace="/admin"
+				method="post">
+				<s:token></s:token>
+				<s:fielderror></s:fielderror>
+				
+
+			</s:form>
+			<%@ include file="../common/incFooter.jsp"%></center>
+		
+	</body>
+</html>

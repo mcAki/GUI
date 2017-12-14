@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts><!--
+
+入口：http://localhost:8080/VolunteerManage/frame!main.html
+
+	 -->
+	 <package name="system" namespace="/" extends="struts-core">
+	 	<action name="frame" class="systemAction">
+	 		<result name="top">/system/top.jsp</result>
+	 		<result name="left">/system/left.jsp</result>
+	 		<result name="main">/system/main.jsp</result>
+	 		<result name="defPage">/system/default.jsp</result>
+	 		<result name="timeout">/common/message.jsp</result>
+	 	</action>
+	 	
+	 	<action name="noserver" class="systemAction" method="noserver">
+	 		
+	 	</action>
+	 </package>
+	 <!-- http://localhost:8080/VolunteerManage/login.html -->
+	 <package name="login" namespace="/" extends="struts-core">
+	 	<action name="login" class="loginAction">
+	 		<result name="page">/system/login.jsp</result>
+	 		<result name="input">/system/login.jsp</result>	 	
+	 		<result name="admin">/system/login.jsp</result>	 
+	 		<result name="loginSuccessTemp" type="redirectAction">
+				<param name="namespace">/admin</param>
+				<param name="actionName">list</param>
+			</result>
+	 		<result name="loginSuccess" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">frame</param>
+				<param name="method">main</param>
+			</result>
+	 	</action>
+	 	
+	 	<action name="adminLogin" class="loginAction">
+	 		<result name="page">/system/login.jsp</result>
+	 		<result name="input">/system/login.jsp</result>
+	 		<result name="admin">/system/login.jsp</result>	 
+	 		<result name="loginSuccess" type="redirectAction"><!-- 注意该配置方式,很好的重用上面的配置 -->
+				<param name="namespace">/</param>
+				<param name="actionName">frame</param>
+				<param name="method">main</param>
+			</result>
+	 	</action>
+	 	
+	 	<action name="logout" class="loginAction"  method="doLogout">
+	 		<result name="success">/common/message.jsp</result>
+	 	</action>	 	
+	 </package>
+	 
+	 <package name="verify" namespace="/" extends="struts-core">
+	 	<action name="verify" class="com.sys.volunteer.system.VerifyImageAction">
+	 		<result name="success"></result>
+	 	</action>
+	 </package>	 
+</struts>

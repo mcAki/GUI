@@ -1,0 +1,22 @@
+﻿*{word-break:break-all} /*强制换行*/
+body{font-size:14px;color:#2B2B2B;font-family:"Courier New",Courier,monospace;padding:0px;margin:0px auto 0px auto;
+background:url("background.jpg") repeat-x scroll 0 0 transparent;}
+a{text-decoration:none;color:#2B2B2B;}
+a:hover{color:#F00;text-decoration:none}
+img{
+border:0;
+}
+.main{
+width:1260px;
+height:530px;
+padding-top:74px;
+margin:0px auto 0px auto;
+}
+.left{float:left;}
+.cle{float:left;}
+.re{float:left;}
+.end{
+	float:left;clear:both;text-align:center;font-size:12px;
+width:1260px;height:20px;padding-top:30px;color:#fff;
+
+}

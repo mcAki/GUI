@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- Struts默认的视图主题  (简化的)-->
+    <constant name="struts.ui.theme" value="simple" />
+    <!-- 指定Struts 2默认的ObjectFactory Bean，该属性默认值是spring --> 
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.multipart.saveDir" value="/tmp" />
+	<constant name="struts.multipart.maxSize" value="1000000000" />
+	<!-- 动态方法调用(request中的叹号) -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+	<constant name="struts.action.extension" value="do,action,html" /> 
+	<include file="struts-core.xml"></include>
+	<include file="struts-json.xml"></include>
+	<include file="struts-administrators.xml"></include>
+	<include file="struts-system.xml"></include>
+	<include file="struts-gmmanage.xml"></include>
+	<!-- <include file="struts-employee.xml"></include>
+	
+	<include file="struts-users.xml"></include> -->
+</struts>

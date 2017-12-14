@@ -1,0 +1,709 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+	<head>
+		<!--Head Begin-->
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+  
+<script language="javascript" type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script language="javascript" type="text/javascript" src="js/jquery-ui-1.8.4.custom.min.js"></script>
+ 
+<script language="javascript" type="text/javascript" src="js/jquery.metadata.js"></script>
+<script language="javascript" type="text/javascript" src="js/jqueryAjax.js"></script>
+<script language="javascript" type="text/javascript" src="js/common.js"></script>
+<script language="javascript" type="text/javascript" src="js/listtb.js"></script>
+<script language="javascript" type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
+ 
+
+<script language="javascript" type="text/javascript" src="js/jqmodel/jqModal.js"></script>
+<script language="javascript" type="text/javascript" src="js/jqmodel/jqDnR.js"></script>
+<script language="javascript" type="text/javascript" src="js/jqmodel/dimensions.js"></script>
+ 
+ 
+
+<link href="css/criteria.css" rel="stylesheet" type="text/css">  
+<link href="css/sys.css" rel="stylesheet" type="text/css">
+<link href="js/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css" />
+ 
+ <!--  jqModal Styling -->
+<link type="text/css" rel="stylesheet" media="all" href="js/jqmodel/jqModal.css" />
+ 
+<!--Head End-->
+<link href="../css/criteria.css" rel="stylesheet" type="text/css">
+<link href="../css/sys.css" rel="stylesheet" type="text/css">
+ 
+<script type="text/javascript"> 
+
+var STATE_NORMAL = "正常考勤";
+var STATE_LATER = "迟到/早退";
+var STATE_SKIPWORK = "旷工"; 
+var STATE_ASKOFF = "请假";
+//正在修改的Row的指针
+var modifyRow = null;
+var modifyState = null;
+
+
+//修改考勤状态CSS
+function setStateCss(modifyState,state){
+	modifyState.removeClass('state1');
+	modifyState.removeClass('state2');
+	modifyState.removeClass('state3');
+	modifyState.removeClass('state4');
+	modifyState.addClass(state);
+}
+
+//点击选择
+function closeAndSetTime(changed){
+	$('#divSetTime').attr('changevalue',changed);
+	$('#divSetTime').jqmHide();
+}
+
+//点击选择
+function closeAndSetLateTime(changed){
+	$('#divSetLateTime').attr('changevalue',changed);
+	$('#divSetLateTime').jqmHide();
+}
+
+$(document).ready(function() {
+	//打开时候把屏蔽区的东西屏蔽
+	$('#nocheckon .rows').addClass('disabled');
+	$('#nocheckon .rows .enable').html('启用');
+
+	//===弹出框设定与定义=======================
+	$('#divSetState').jqm({
+		//trigger:'.state',//'#btnSetState',
+		overlay:70,//半透明背景层
+		onShow:function(h){
+			h.w.css('opacity',0.96).slideDown("fast");
+		},
+		onHide:function(h){
+			h.w.slideUp("fast",function(){
+				if(h.o)h.o.remove();
+			});
+		}
+	}).jqmAddClose($('#divSetState #btnState_cancel'));
+
+	$('#divSetLateTime').jqm({
+		//trigger:'.state',//'#btnSetState',
+		overlay:70,//半透明背景层
+		onShow:function(h){
+			h.w.css('opacity',0.96).slideDown("fast");
+			$('#dpClearInput').html('aa');
+		},
+		onHide:function(h){
+			h.w.slideUp("fast",function(){
+				if(h.o)h.o.remove();
+				//if($('#divSetLateTime').attr('changevalue')>0){
+					//触发自定义事件
+					$('#divSetLateTime').trigger("onClosed",[""+$('#txtLateTime').val(),""+$('#txtEarlyTime').val()]);
+				//}
+			});
+		}		
+	});
+	
+	$('#divSetTime').jqm({
+		//trigger:'.state',//'#btnSetState',
+		overlay:70,//半透明背景层
+		onShow:function(h){
+			$('#divSetTime').attr('changevalue',0);	
+			h.w.css('opacity',0.96).slideDown("fast");
+		},
+		onHide:function(h){
+			h.w.slideUp("fast",function(){
+				if(h.o)h.o.remove();
+				if($('#divSetTime').attr('changevalue')>0){
+					//触发自定义事件
+					$('#divSetTime').trigger("onClosed",[$('#txtWorkTime').val()]);
+				}
+			});
+		}		
+	});
+
+	//====================
+	//$('#divSetTime').bind('onClosed',function(e,time){alert('事件1');});
+
+	$('.rows:not(.header) .hour').click(/*设定考勤时间*/
+		function(){	
+		//检查当前框属于登记,还是屏蔽的
+			var divname = $(this).parent().parent().parent().parent().attr("id");
+			//alert(x);
+			if(divname=="checkon"){
+				//关闭事件重新绑定
+				var eventObj = $(this);
+				$('#divSetTime').unbind('onClosed');
+				$('#divSetTime').bind('onClosed',function(e,time){
+					eventObj.html(time);
+				});
+				//读取原来的值
+				$('#txtWorkTime').val(eventObj.html());
+				$('#divSetTime').jqmShow();
+			}
+		}
+	);
+	
+	$('#btnSetAllTime').click(/*设定所有考勤时间*/
+		function(){	
+			//关闭事件重新绑定
+			$('#divSetTime').unbind('onClosed');
+			$('#divSetTime').bind('onClosed',function(e,time){
+				$('#checkon .rows:not(.header) .hour').html(time);
+			});
+			$('#txtWorkTime').val('01:00');
+			$('#divSetTime').jqmShow();
+			//$('#checkon .rows:not(.header) .hour').html('99');
+		}
+	);
+
+	
+	$('#btnSetState_1').click(/*功能按钮:正常考勤*/
+		function(){
+			modifyState.html( STATE_NORMAL );
+			setStateCss(modifyState,'state1');
+			modifyRow.children('.lateTime').html('0分');
+			modifyRow.children('.earlyTime').html('0分');			
+			$('#divSetState').jqmHide();
+		}
+	);
+	
+	$('#btnSetState_2').click(/*功能按钮:迟到/早退*/
+		function(){			
+			$('#divSetState').jqmHide();
+			//绑定事件
+			$('#divSetLateTime').unbind('onClosed');
+			$('#divSetLateTime').bind('onClosed',function(e,latetime,earlytime){
+				if($('#divSetLateTime').attr('changevalue')>0){
+					modifyRow.children('.lateTime').html(latetime);
+					modifyRow.children('.earlyTime').html(earlytime);
+					modifyState.html( STATE_LATER );
+					setStateCss(modifyState,'state2');
+				}else{
+					modifyState.html( STATE_NORMAL );
+					setStateCss(modifyState,'state1');
+				}
+			});			
+			$('#divSetLateTime').jqmShow();
+		}
+	);
+	
+	$('#btnSetLateTime').click(/*功能按钮:迟到/早退 (填时间)*/
+		function(){
+			modifyState.html( STATE_LATER );
+			setStateCss(modifyState,'state2');
+			$('#divSetLateTime').jqmHide();
+		}
+	);
+
+	$('#btnSetState_3').click(/*功能按钮:旷工*/
+		function(){
+			modifyState.html( STATE_SKIPWORK );
+			setStateCss(modifyState,'state3');
+			modifyRow.children('.hour').html('0小时00分');
+			$('#divSetState').jqmHide();
+		}
+	);
+
+	$('#btnSetState_4').click(/*功能按钮:请假*/
+		function(){
+			modifyState.html( STATE_ASKOFF );
+			setStateCss(modifyState,'state4');
+			$('#divSetState').jqmHide();
+		}
+	);
+	
+	$(".rows:not(.header) .faltBtnGreen").hover(/*按钮状态按钮群*/
+		function () {
+			$(this).addClass("faltBtnGreen_hover");
+		},
+		function () {
+			$(this).removeClass("faltBtnGreen_hover");					
+		}
+	);
+
+	$(".state").click(
+		function(){
+			//检查当前框属于登记,还是屏蔽的
+			var divname = $(this).parent().parent().parent().parent().attr("id");
+			//alert(x);
+			if(divname=="checkon"){
+				//移动考勤人到屏蔽区域
+				modifyState = $(this);
+				modifyRow = $(this).parent();
+				$('#labStateName').html($(this).prev('.username').html());
+				$('#divSetState').jqmShow();
+			}
+		}
+	);
+	
+	$(".rows:not(.header) .enable").click(
+		function(){
+			//检查当前框属于登记,还是屏蔽的
+			var divname = $(this).parent().parent().parent().parent().attr("id");
+			//alert(x);
+			if(divname=="checkon"){
+				//移动考勤人到屏蔽区域
+				//$("#nocheckon").find("#title").show();								
+				$(this).parent().fadeOut(300,
+					function(){
+						//alert("删: "+$(this).parent());
+						tmpLi = $(this).parent();
+						$(this).children('.enable').text('启用').removeClass("faltBtnGreen_hover");
+						//tmpLi.remove();
+						var itemobj = $(this).parent().appendTo("#nocheckon ul");
+						$(this).removeClass("hover").addClass("disabled").show(300);
+					}			
+				);
+			}else if(divname=="nocheckon"){
+				//恢复考勤人到考勤区域
+				$(this).parent().fadeOut(300,
+					function(){
+						tmpLi = $(this).parent();
+						$(this).children('.enable').text('屏蔽').removeClass("faltBtnGreen_hover");						
+						//tmpLi.remove();
+						var itemobj = $(this).parent().appendTo("#checkon ul");
+						$(this).removeClass("hover").removeClass("disabled").show(300);
+					}
+				);				
+			}
+
+		}
+	);
+//$(".enable").addClass("hover");
+});
+ 
+</script>
+<style type="text/css">
+.faltBtnGreen{
+	border:solid 1px;
+	border-color:#E4FFCA #390 #390 #E4FFCA;
+	background:#6C3;
+	height:22px;
+	line-height:22px;	
+}
+.faltBtnGreen_hover{
+	border-color:#FF9 #930 #930 #FF9;
+	background:#FC0;
+	cursor:pointer;
+}
+
+.checkon_grid .hover{
+	background-color:#FC0;
+}
+ 
+.checkon_grid{
+	padding:5px;
+}
+ 
+.checkon_grid li{
+	padding:0px;
+	margin:0px;
+	list-style:none;
+	list-style-type:none;
+}
+ 
+.checkon_grid a:link, 
+.checkon_grid a:visited {
+	color:#0C0;
+} 
+.checkon_grid a:hover,
+.checkon_grid a:active {
+	color: #FF6600;
+} 
+ 
+ 
+.checkon_grid .rows{
+	height:24px;
+	width:600px;
+	white-space:nowrap;
+	border-color:#060;
+	border-width:1px;
+	border-style:solid;
+	background-color:#F1FFBF;
+	margin:-1px 0px 0px 0px;
+	overflow:hidden;
+	padding:1px;
+}
+
+.checkon_grid .disabled{
+	background-color:#EEEEEE;
+	color:#999999;
+	border-color:#999999;
+}
+
+.checkon_grid .header{
+	background-color:#FC0;
+}
+
+.checkon_grid .rows .uid{
+	width:50px;
+	overflow:hidden;
+	float:left;
+}
+.checkon_grid .rows .username{
+	width:130px;
+	overflow:hidden;
+	float:left;
+}
+
+.checkon_grid .rows .state{
+	width:60px;
+	overflow:hidden;
+	float:left;
+}
+ 
+.checkon_grid .rows .minute{
+	width:60px;
+	overflow:hidden; 
+	float:left;
+}
+ 
+.checkon_grid .rows .hour{
+	width:80px;
+	overflow:hidden; 	
+	float:left;
+	font-weight:bold;
+}
+
+.checkon_grid .rows .checkonCount{
+	width:60px;
+	overflow:hidden; 	
+	float:left;
+	font-weight:bold;
+}
+
+.checkon_grid .rows .totalHour{
+	width:80px;
+	overflow:hidden; 	
+	float:left;
+	font-weight:bold;
+}
+ 
+.checkon_grid .rows .lateTime{
+	width:40px;
+	overflow:hidden; 	
+	float:left;
+}
+.checkon_grid .rows .earlyTime{
+	width:40px;
+	overflow:hidden; 	
+	float:left;
+}
+
+ 
+.checkon_grid .rows .enable{
+	float:right;
+	width:28px;
+}
+ 
+/*.checkon_grid .rows .enableControl{
+	color:#333;
+	height:22px;
+	line-height:22px;
+}*/
+
+.setStateWindow{
+    top: 17%;
+    left: 50%;
+	    
+	width: 200px;
+    margin-left: -100px;
+    
+    background-color: #EEE;
+    color: #333;
+    border: 1px solid black;
+	text-align:center;
+}
+
+.checkon_grid .rows .state1{
+}
+.checkon_grid .rows .state2{
+	background-color:#FF972F;
+}
+.checkon_grid .rows .state3{
+	background-color:#FF7D7D;
+}
+.checkon_grid .rows .state4{
+	background-color:#CCC;
+}
+
+
+/* jqModal base Styling courtesy of;
+  Brice Burgess <bhb@iceburg.net> */
+
+/* The Window's CSS z-index value is respected (takes priority). If none is supplied,
+  the Window's z-index value will be set to 3000 by default (in jqModal.js). You
+  can change this value by either;
+    a) supplying one via CSS
+    b) passing the "zIndex" parameter. E.g.  (window).jqm({zIndex: 500}); */
+.jqmStand{
+	margin-left: -300px;
+    width: 600px;
+    top: 17%;
+    left: 50%;
+
+    background-color: #EEE;
+    color: #333;
+    border: 1px solid black;	
+}
+
+.jqmWindow {
+    display: none;
+    position: fixed;
+    padding: 12px;
+}
+
+/*弹出框后的背景*/
+.jqmOverlay { background-color:#001100; }
+
+/* 修正IE6坐标 */
+* html .jqmWindow {
+     position: absolute;
+     top: expression((document.documentElement.scrollTop || document.body.scrollTop) + Math.round(17 * (document.documentElement.offsetHeight || document.body.clientHeight) / 100) + 'px');
+}
+ 
+ 
+ 
+ 
+/*=====================*/
+
+
+</style>
+</head>
+<body>
+    <center>
+			<!--Banner Begin-->
+ 
+<!--Banner End-->
+<form id="strutsForm" name="strutsForm" action="/VolunteerManage/admin/doUpdate.do" method="post">
+<input type="hidden" name="struts.token.name" value="struts.token" />
+<input type="hidden" name="struts.token" value="AC9IQDLQL4OPDFGEAV5TUYP7QTB3D7Y2" />
+</br>
+<H2>标题</H2>
+<div id="divCheckOnDate"></div>
+<script type="text/javascript">
+WdatePicker({
+	eCont:'divCheckOnDate',
+	onpicked:function(dp){
+		alert('你选择的日期是:'+dp.cal.getDateStr())
+	},
+	minDate:'%y-%M-{%d-7}',
+	maxDate:'%y-%M-%d'
+})
+</script>
+
+</br></br></br>
+<div id="checkon" class="checkon_grid">
+<ul>
+<li><div id="title" class="rows header">
+    <div class="uid">身份证</div>
+    <div class="username">姓名</div>
+    <div class="state">登记状态</div>
+    <div class="hour">本次工时</div>
+    <div class="lateTime">迟到</div>
+    <div class="earlyTime">早退</div>
+    <div class="checkonCount">登记次数</div>
+	<div class="totalHour">日总工时</div>
+    <div class="enable">操作</div>
+</div></li>
+<li><div id="r1" class="rows">
+    <div class="uid">0010</div>
+    <div class="username">张三</div>
+    <div class="state faltBtnGreen state1">正常出勤</div>
+    <div class="hour faltBtnGreen">0小时00分</div>
+    <div class="lateTime">0分</div>
+    <div class="earlyTime">0分</div>    
+    <div class="checkonCount">0</div>
+	<div class="totalHour">2小时00分</div>
+    <div class="enable faltBtnGreen">屏蔽</div>
+</div></li>
+</ul>
+</div>
+<li><div id="footer" class="rows footer">
+</div></li>
+
+<input type="button" id="btnSetAllTime"value="改变全部时间">
+
+
+<div id="nocheckon" class="checkon_grid">
+<ul>
+<li>
+	<div id="title" class="rows disabled">不需要处理而屏蔽的</div>
+</li>
+<li><div id="r5" class="rows">
+    <div class="uid">0013</div>
+    <div class="username">王八</div>
+    <div class="state faltBtnGreen state1">正常出勤</div>
+    <div class="hour faltBtnGreen">0小时00分</div>
+    <div class="lateTime">0分</div>
+    <div class="earlyTime">0分</div>    
+    <div class="checkonCount">0</div>
+	<div class="totalHour">2小时00分</div>
+    <div class="enable faltBtnGreen">屏蔽</div>
+</div></li>
+</ul>
+</div>
+
+</form>
+ 
+ 
+<a href="#" class="confirm" onclick="myAlert();">view</a>
+
+</center>
+
+
+<div id="divSetState" class="setStateWindow jqmWindow">
+    <div>修改: <span id="labStateName"></span></div>
+    <div><input type="button" name="btnSetState" id="btnSetState_1" style="width:200px;" value="正常出勤" /></div>
+    <div><input type="button" name="btnSetState" id="btnSetState_2" style="width:200px;" value="迟到/早退" /></div>
+    <div><input type="button" name="btnSetState" id="btnSetState_3" style="width:200px;" value=" 旷 工 " /></div>
+    <div><input type="button" name="btnSetState" id="btnSetState_4" style="width:200px;" value=" 请 假 " /></div>
+    <HR>
+    <div><input type="button" name="btnState_cancel" id="btnState_cancel" style="width:100px;" value="取消选择" onclick="javascript:$('#divSetState').jqmHide();" /></div>
+</div>
+
+<div id="divSetLateTime" class="setStateWindow jqmWindow">
+	<div style="text-align:left;">请设置迟到与早退的时间<br>迟到与早退可以同时设置<br>注意：<br>如果迟到超过30分钟应属旷工处理</div>
+    <div><label>迟到:
+    <select class="txtW1" id="txtLateTime" type="text" >
+        <option value="0分">0分</option>
+        <option value="1分">1分</option>
+        <option value="2分">2分</option>
+        <option value="3分">3分</option>
+        <option value="4分">4分</option>
+        <option value="5分">5分</option>
+        <option value="6分">6分</option>
+        <option value="7分">7分</option>
+        <option value="8分">8分</option>
+        <option value="9分">9分</option>
+        <option value="10分">10分</option>
+        <option value="11分">11分</option>
+        <option value="12分">12分</option>
+        <option value="13分">13分</option>
+        <option value="14分">14分</option>
+        <option value="15分">15分</option>
+        <option value="16分">16分</option>
+        <option value="17分">17分</option>
+        <option value="18分">18分</option>
+        <option value="19分">19分</option>
+        <option value="20分">20分</option>
+        <option value="21分">21分</option>
+        <option value="22分">22分</option>
+        <option value="23分">23分</option>
+        <option value="24分">24分</option>
+        <option value="25分">25分</option>
+        <option value="26分">26分</option>
+        <option value="27分">27分</option>
+        <option value="28分">28分</option>
+        <option value="29分">29分</option>
+        <option value="30分">30分</option>
+        <option value="31分">31分</option>
+        <option value="32分">32分</option>
+        <option value="33分">33分</option>
+        <option value="34分">34分</option>
+        <option value="35分">35分</option>
+        <option value="36分">36分</option>
+        <option value="37分">37分</option>
+        <option value="38分">38分</option>
+        <option value="39分">39分</option>
+        <option value="40分">40分</option>
+        <option value="41分">41分</option>
+        <option value="42分">42分</option>
+        <option value="43分">43分</option>
+        <option value="44分">44分</option>
+        <option value="45分">45分</option>
+        <option value="46分">46分</option>
+        <option value="47分">47分</option>
+        <option value="48分">48分</option>
+        <option value="49分">49分</option>
+        <option value="50分">50分</option>
+        <option value="51分">51分</option>
+        <option value="52分">52分</option>
+        <option value="53分">53分</option>
+        <option value="54分">54分</option>
+        <option value="55分">55分</option>
+        <option value="56分">56分</option>
+        <option value="57分">57分</option>
+        <option value="58分">58分</option>
+        <option value="59分">59分</option>
+        <option value="60分">60分</option>
+    </select></label></div>
+    <div><label>早退:
+    <select class="txtW1" id="txtEarlyTime" type="text" >
+        <option value="0分">0分</option>
+        <option value="1分">1分</option>
+        <option value="2分">2分</option>
+        <option value="3分">3分</option>
+        <option value="4分">4分</option>
+        <option value="5分">5分</option>
+        <option value="6分">6分</option>
+        <option value="7分">7分</option>
+        <option value="8分">8分</option>
+        <option value="9分">9分</option>
+        <option value="10分">10分</option>
+        <option value="11分">11分</option>
+        <option value="12分">12分</option>
+        <option value="13分">13分</option>
+        <option value="14分">14分</option>
+        <option value="15分">15分</option>
+        <option value="16分">16分</option>
+        <option value="17分">17分</option>
+        <option value="18分">18分</option>
+        <option value="19分">19分</option>
+        <option value="20分">20分</option>
+        <option value="21分">21分</option>
+        <option value="22分">22分</option>
+        <option value="23分">23分</option>
+        <option value="24分">24分</option>
+        <option value="25分">25分</option>
+        <option value="26分">26分</option>
+        <option value="27分">27分</option>
+        <option value="28分">28分</option>
+        <option value="29分">29分</option>
+        <option value="30分">30分</option>
+        <option value="31分">31分</option>
+        <option value="32分">32分</option>
+        <option value="33分">33分</option>
+        <option value="34分">34分</option>
+        <option value="35分">35分</option>
+        <option value="36分">36分</option>
+        <option value="37分">37分</option>
+        <option value="38分">38分</option>
+        <option value="39分">39分</option>
+        <option value="40分">40分</option>
+        <option value="41分">41分</option>
+        <option value="42分">42分</option>
+        <option value="43分">43分</option>
+        <option value="44分">44分</option>
+        <option value="45分">45分</option>
+        <option value="46分">46分</option>
+        <option value="47分">47分</option>
+        <option value="48分">48分</option>
+        <option value="49分">49分</option>
+        <option value="50分">50分</option>
+        <option value="51分">51分</option>
+        <option value="52分">52分</option>
+        <option value="53分">53分</option>
+        <option value="54分">54分</option>
+        <option value="55分">55分</option>
+        <option value="56分">56分</option>
+        <option value="57分">57分</option>
+        <option value="58分">58分</option>
+        <option value="59分">59分</option>
+        <option value="60分">60分</option>
+    </select></label></div>
+    <hr />
+    <div><input type="button" onclick="closeAndSetLateTime(1)" style="width:80px;" value="确认" />&nbsp;&nbsp;<input type="button" onclick="closeAndSetLateTime(0)"  style="width:80px;" value="取消"/></div>
+</div>
+
+<div id="divSetTime" class="setStateWindow jqmWindow">
+    <div><label>志愿时:</label><input id="txtWorkTime" readonly="readonly" type="text" onmousedown="WdatePicker({dateFmt:'H小时mm分',minDate:'0:00:00',maxDate:'24:00:00',isShowClear:false,isShowToday:false})" class="Wdate txtW1" value="0小时15分" /></div>
+    <hr />
+    <div><input type="button" onclick="closeAndSetTime(1)" style="width:80px;" value="确认" />&nbsp;&nbsp;<input type="button" onclick="closeAndSetTime(0)" style="width:80px;" value="取消"/></div>
+</div>
+
+	</body>
+</html>
