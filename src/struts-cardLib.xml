@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="cardLib" namespace="/cardLib" extends="struts-core">
+		<action name="page" class="com.sys.volunteer.cardLib.CardLibAction">
+			<result name="do">/cardLib/cardLib.jsp</result>
+		</action>
+		
+		<action name="doAdd" class="com.sys.volunteer.cardLib.CardLibAction" method="doAdd">
+			<result name="success"></result>
+			<result name="input">/cardLib/cardLib.jsp</result>
+		</action>
+		
+		<action name="listCardLib" class="com.sys.volunteer.cardLib.ListCardLibAction" method="listCardLib">
+			<result name="listCardLib">/cardLib/listCardLib.jsp</result>	
+		</action>
+		
+		<action name="listCardLibForAdmin" class="com.sys.volunteer.cardLib.ListCardLibAction" method="listCardLibForAdmin">
+			<result name="listCardLibForAdmin">/cardLib/listCardLibForAdmin.jsp</result>	
+		</action>
+	</package>	
+	
+</struts>

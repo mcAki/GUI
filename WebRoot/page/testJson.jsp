@@ -26,7 +26,7 @@
 			dataType:"json",
 			success:function(msg){
 				for(var i=0;i<msg.length;i++){
-					alert(msg[i].userName+"==="+msg[i].loginIp);
+					alert(msg[i].administrator+"==="+msg[i].loginIp);
 				}
 				
 			}
@@ -43,7 +43,7 @@
 			data:jsonData,
 			dataType:"json",
 			success:function(msg){
-				alert(msg.userName+"==="+msg.loginIp);
+				alert(msg.administrator+"==="+msg.loginIp);
 			}
 		});
   	}
@@ -58,10 +58,10 @@
 			data:jsonData,
 			dataType:"json",
 			success:function(msg){
-				alert(msg.admin.userName);
+				alert(msg.admin.administrator);
 				
 				for(var i=0;i<msg.adminList.length;i++){
-					alert(msg.adminList[i].userName+"==="+msg.adminList[i].loginIp);
+					alert(msg.adminList[i].administrator+"==="+msg.adminList[i].loginIp);
 				}
 			}
 		});
@@ -80,7 +80,7 @@
 				alert("调用服务器端错误");
 			},
 			success:function(msg){
-				alert(msg.userName+"==="+msg.loginIp);
+				alert(msg.administrator+"==="+msg.loginIp);
 			}
 			
 		});
@@ -100,9 +100,9 @@
 	  		var jsonData = {name:_name,message:_message};
 	  		postJonRequest(jsonData,'${pageContext.request.contextPath}/jsontest!testMultiply.html',"服务器出错",
 	  				function(msg){
-						alert(msg.admin.userName);
+						alert(msg.admin.administrator);
 						for(var i=0;i<msg.adminList.length;i++){
-							alert(msg.adminList[i].userName+"==="+msg.adminList[i].loginIp);
+							alert(msg.adminList[i].administrator+"==="+msg.adminList[i].loginIp);
 						}
 				})
 	  		
@@ -120,15 +120,15 @@
 			  		'服务器出错',
 			  		!block,
 			  		function(msg){
-						alert(msg.admin.userName);
+						alert(msg.admin.administrator);
 						for(var i=0;i<msg.adminList.length;i++){
-							alert(msg.adminList[i].userName+"==="+msg.adminList[i].loginIp);
+							alert(msg.adminList[i].administrator+"==="+msg.adminList[i].loginIp);
 					    }
 				    });
 						  
 	  		alert("步骤:2 获取了json");
 			//for(var i=0;i<msg.adminList.length;i++){
-			//	alert(msg.adminList[i].userName+"==="+msg.adminList[i].loginIp);
+			//	alert(msg.adminList[i].administrator+"==="+msg.adminList[i].loginIp);
 			//}
 			alert("步骤:3 完成所有");
 	  		

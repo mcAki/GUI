@@ -19,8 +19,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.ServletActionContext;
 
-import com.ages.model.Administrators;
-import com.ages.model.ConnectInfo;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.sys.volunteer.common.Const;
@@ -57,7 +55,7 @@ public abstract class BaseAction extends ActionSupport {
 	public final static String NOCACHE_HEADER_VALUE = "no-cache";
 
 	private int id;
-	private int regionId;
+
 	protected String uuid;
 
 	/**
@@ -162,22 +160,13 @@ public abstract class BaseAction extends ActionSupport {
 		return ctx.getSession();
 	}
 
-	public Administrators getSessionUser() {
+	public Users getSessionUser() {
 		ActionContext ctx = ActionContext.getContext();
-		Administrators user = (Administrators) ctx.getSession().get(Const.USER_SESSION_KEY);
+		Users user = (Users) ctx.getSession().get(Const.USER_SESSION_KEY);
 		if (null == user) {
 			throw new SystemException("请先登陆再使用");
 		}
 		return user;
-	}
-	
-	public ConnectInfo getSessionServer() {
-		ActionContext ctx = ActionContext.getContext();
-		ConnectInfo connectInfo = (ConnectInfo) ctx.getSession().get(Const.SERVERID_SESSION_KEY);
-		if (null == connectInfo) {
-			throw new SystemException("请先选择服务器");
-		}
-		return connectInfo;
 	}
 
 	/**
@@ -426,7 +415,6 @@ public abstract class BaseAction extends ActionSupport {
 	public String getStrutsActionMethod() {
 		return ActionContext.getContext().getActionInvocation().getProxy().getMethod();
 	}
-
 	/**
 	 * 3个属性由文件上传使用
 	 */
@@ -468,14 +456,4 @@ public abstract class BaseAction extends ActionSupport {
 		this.getHttpServletResponse().setDateHeader("Expires", 0);
 		this.getHttpServletResponse().setHeader("Pragma", "no-cache");
 	}
-
-	public int getRegionId() {
-		return regionId;
-	}
-
-	public void setRegionId(int regionId) {
-		this.regionId = regionId;
-	}
-	
-	
 }

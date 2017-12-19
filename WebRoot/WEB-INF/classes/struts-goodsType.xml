@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="goodsType" namespace="/goodsType" extends="struts-core">
+		
+		<action name="page" class="com.sys.volunteer.goods.GoodsTypeAction">
+			<result name="do">/goods/goodsType.jsp</result>
+			<result name="update">/goods/updateGoodsType.jsp</result>
+		</action>
+		
+		<action name="doAdd" class="com.sys.volunteer.goods.GoodsTypeAction" method="doAdd">
+			<!--<interceptor-ref name="token"/>
+			<result name="invalid.token">/user/user.jsp</result>			
+			--><result name="success"></result>
+			<result name="input">/goods/goodsType.jsp</result>
+		</action>
+		
+		<action name="doUpdate" class="com.sys.volunteer.goods.GoodsTypeAction" method="doUpdate">
+			<!--<interceptor-ref name="token"/>
+			<result name="invalid.token">/user/user.jsp</result>			
+			--><result name="success"></result>
+			<result name="input">/goods/updateGoodsType.jsp</result>
+		</action>
+		
+		<action name="list" class="com.sys.volunteer.goods.ListGoodsTypeAction" >
+			<result name="success">/goods/listGoodsType.jsp</result>
+		</action>
+	</package>	
+	
+</struts>

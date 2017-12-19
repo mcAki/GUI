@@ -10,8 +10,6 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import com.sun.org.apache.bcel.internal.generic.NEW;
 /**
  * 时间格式转换
  * @author Administrator
@@ -20,6 +18,7 @@ import com.sun.org.apache.bcel.internal.generic.NEW;
 public class DateUtil {
 	private static final Log log = LogFactory.getLog(DateUtil.class);
 	public static final String CM_LONG_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+	public static final String CM_LONG_DATE_FORMAT_NO_HIPHEN = "yyyyMMddHHmmss";
 	public static final String CM_SHORT_DATE_FORMAT = "yyyy-MM-dd";
 	public static final String CM_SHORT_MONTH_FORMAT = "yyyy-MM";
 	public static final String CM_SHORT_YEAR_FORMAT = "yyyy";
@@ -274,7 +273,7 @@ public class DateUtil {
 	 * 判断俩个时间差，根据flag转化结果为时，分，秒
 	 * @param endTimestamp
 	 * @param startTimestamp
-	 * @param flag 0：秒 1：分 2：时 3: 日
+	 * @param flag 0：秒 1：分 2：时
 	 * @return
 	 */
 	public static long subtractTime(Timestamp endTimestamp,Timestamp startTimestamp,int flag){
@@ -285,148 +284,8 @@ public class DateUtil {
 			temp=60000;
 		}else if(flag==2){
 			temp=3600000;
-		}else if (flag==3) {
-			temp=86400000;
 		}
 		return (endTimestamp.getTime()-startTimestamp.getTime())/temp;
-	}
-	
-	/**
-	 * 判断俩个时间差，根据flag转化结果为时，分，秒
-	 * @param endTimestamp
-	 * @param startTimestamp
-	 * @param flag 0：秒 1：分 2：时 3: 日
-	 * @return
-	 */
-	public static long subtractTime(Date endDate,Date startDate,int flag){
-		int temp=1000;
-		if(flag==0){
-			temp=1000;
-		}else if(flag==1){
-			temp=60000;
-		}else if(flag==2){
-			temp=3600000;
-		}else if (flag==3) {
-			temp=86400000;
-		}
-		return endDate.getTime()/temp-startDate.getTime()/temp;
-	}
-	
-	/**
-	 * 判断俩个时间差，根据flag转化结果为时，分，秒
-	 * @param endTimestamp
-	 * @param startTimestamp
-	 * @param flag 0：秒 1：分 2：时 3: 日
-	 * @return
-	 */
-	public static long subtractTime(String endDate,String startDate,int flag,String iso){
-		int temp=1000;
-		if(flag==0){
-			temp=1000;
-		}else if(flag==1){
-			temp=60000;
-		}else if(flag==2){
-			temp=3600000;
-		}else if (flag==3) {
-			temp=86400000;
-		}
-		Date sDate = formatDate(startDate, iso);
-		Date eDate = formatDate(endDate, iso);
-		return eDate.getTime()/temp-sDate.getTime()/temp;
-	}
-	
-	/**
-	 * 获得指定日期的前一天
-	 * 
-	 * @param specifiedDay
-	 * @return
-	 * @throws Exception
-	 */
-	public static Date getSpecifiedDayBefore(Date specifiedDay) {// 可以用new
-		// Date().toLocalString()传递参数
-		Calendar c = Calendar.getInstance();
-		// Date date = null;
-		// try {
-		// date = new SimpleDateFormat("yy-MM-dd").parse(specifiedDay);
-		// } catch (ParseException e) {
-		// e.printStackTrace();
-		// }
-		c.setTime(specifiedDay);
-		int day = c.get(Calendar.DATE);
-		c.set(Calendar.DATE, day - 1);
-
-		Date dayBefore = c.getTime();
-		return dayBefore;
-	}
-	
-	/**
-	 * 获得指定日期的前n天
-	 * 
-	 * @param specifiedDay
-	 * @param n 前n天
-	 * @return
-	 * @throws Exception
-	 */
-	public static Date getSpecifiedDayBefore(Date specifiedDay, int n) {// 可以用new
-		// Date().toLocalString()传递参数
-		Calendar c = Calendar.getInstance();
-		// Date date = null;
-		// try {
-		// date = new SimpleDateFormat("yy-MM-dd").parse(specifiedDay);
-		// } catch (ParseException e) {
-		// e.printStackTrace();
-		// }
-		c.setTime(specifiedDay);
-		int day = c.get(Calendar.DATE);
-		c.set(Calendar.DATE, day - n);
-
-		Date dayBefore = c.getTime();
-		return dayBefore;
-	}
-
-	/**
-	 * 获得指定日期的后一天
-	 * 
-	 * @param specifiedDay
-	 * @return
-	 */
-	public static Date getSpecifiedDayAfter(Date specifiedDay) {
-		Calendar c = Calendar.getInstance();
-//		Date date = null;
-//		try {
-//			date = new SimpleDateFormat("yy-MM-dd").parse(specifiedDay);
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
-		c.setTime(specifiedDay);
-		int day = c.get(Calendar.DATE);
-		c.set(Calendar.DATE, day + 1);
-
-		Date dayAfter = c.getTime();
-		return dayAfter;
-	}
-	
-	/**
-	 * 获得指定日期的后n天
-	 * 
-	 * @param specifiedDay
-	 * @param n 后n天
-	 * @return
-	 */
-	public static Date getSpecifiedDayAfter(Date specifiedDay, int n) {
-		Calendar c = Calendar.getInstance();
-//		Date date = null;
-//		try {
-//			date = new SimpleDateFormat("yy-MM-dd").parse(specifiedDay);
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
-		c.setTime(specifiedDay);
-		int day = c.get(Calendar.DATE);
-		c.set(Calendar.DATE, day + n);
-
-		Date dayAfter = c.getTime();
-		return dayAfter;
 	}
 	
 	public static void main(String args[]) {

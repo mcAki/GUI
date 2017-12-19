@@ -1,0 +1,65 @@
+@charset "gb2312";
+
+/* TOP */
+#head {height:110px; background: url(../images/top_bg.gif);}
+#head .div{ width:950px; height:110px; background: url(../images/top_bg01.jpg);}
+#head .content-aaa{ width:200px; float:left; height:75px; text-align:center; padding-top:30px;}
+#head .content-aaa a{ width:180px;  height:60px; overflow:hidden; display:block; margin:auto; text-indent:-9999px;}
+#head .content{ height:26px; width:727px; float:right; padding-right:11px; margin-top:36px; text-align:right;}
+#head .nav{ width:706px; float:right; padding:0 16px; margin-top:10px; height:38px;}
+#head .nav li{ text-align:center; font-weight:bold; font-size:14px;  height:38px;   line-height:36px; position:relative; display:block;  float:left; z-index:5;}
+#head .nav a{ height:38px; display:block;}
+#head .nav a:hover{ text-decoration: none; color:#FFF;}
+
+#head .lia a{ width:100px; }
+#head .lia a:hover{ background: url(../images/top_ico01.gif) no-repeat; background-position:-346px -38px;}
+#head .lib a{ width:153px; background: url(../images/top_ico.gif) no-repeat; background-position:0px 10px;}
+#head .lib a:hover{ background: url(../images/top_ico01.gif) no-repeat; background-position:-186px -38px;}
+#head .lic a{ width:100px; background: url(../images/top_ico.gif) no-repeat; background-position:0px 10px;}
+#head .lic a:hover{ background: url(../images/top_ico01.gif) no-repeat; background-position:-346px -38px;}
+
+#head .taba a{ width:100px; background: url(../images/top_ico01.gif) no-repeat; background-position:-346px 0px;  color: #0571AD; text-decoration: none;}
+#head .taba a:hover {color: #0571AD;text-decoration: none;}
+#head .tabb a{width:153px; background: url(../images/top_ico01.gif) no-repeat; background-position:-180px 0px; color: #0571AD; text-decoration: none;}
+#head .tabb a:hover {color: #0571AD;text-decoration: none;}
+#head .tabc a{ width:100px; background: url(../images/top_ico01.gif) no-repeat; background-position:-346px 0px;  color: #0571AD; text-decoration: none;}
+#head .tabc a:hover {color: #0571AD;text-decoration: none;}
+
+#head .icon{background: url(../images/top_ico01.gif) no-repeat; background-position:0px -72px; position:absolute; width:18px; height:18px; top:-6px; left:-23px; z-index:6;}
+
+#head-cp {height:105px; background: url(../images/top_bg01.gif);}
+#head-cp .div{ width:950px; height:105px; background: url(../images/top_bg02.jpg) no-repeat -24px 0; position:relative;}
+#head-cpa {height:36px; background: url(../images/top_bg02.gif);}
+#head-cpa .nav{width:950px; height:36px; line-height:36px; text-align:left;}
+#head-cpa .list-a{ width:230px; float:left; text-align:left;}
+#head-cpa .list-b{ width:560px; float:right; text-align:left; background: url(../images/cp_01.gif) no-repeat -197px -124px; padding-left:12px;}
+#head-cpa .but{ position:absolute; width:74px; height:24px; left:860px; top:62px; background: url(../images/cp_01.gif) no-repeat 0px -122px; }
+#head-cpa .but a{  width:74px; height:24px; text-indent:-9999px; display:block;}
+
+
+#search{ clear:both; background: url(../images/top_ico01.gif) no-repeat; background-position:0px -94px; width:950px; height:40px; margin-top:6px;}
+#search .lista{ width:210px; float:left; line-height:40px;}
+#search .listb{ width:740px; float:right; text-align:left; position:relative; z-index:11;}
+#search .listb-r{ width:380px!important; width:382px; position:absolute; background:#FFF; border:#9FC1E6 1px solid; top:34px; padding:6px 0px 0px 0px; }
+#search .listb-r ol{ border-bottom:#e7e7e7 1px dashed; display:block; padding-left:12px; padding-top:3px;}
+
+#search input{ border:#D3EBFF 1px solid; height:20px; width:380px;  background:#fff; color:#333; margin-top:8px; line-height:20px;}
+#search button{ text-indent:-9999px; width:92px; height:30px; background: none transparent scroll repeat 0% 0%; margin-top:4px!important; margin-top:-9px;  margin-left:4px; border:0;}
+#search .nav{ width:245px; float:right; text-align:left; padding-top:11px;}
+
+/* bottom */
+#bottom{ clear:both; width:950px; margin-top:18px; padding-bottom:12px;}
+#bottom ul{ text-align:center;}
+#bottom .ul-a{ border-bottom:#d2d2d2 solid 1px; padding:4px 0;}
+#bottom .ul-b{ height:40px; background: url(../images/top_ico01.gif) no-repeat; background-position:70px -134px; padding-left:250px; text-align:left; line-height:18px; padding-top:3px; margin-top:18px;} 
+#bottom .li-a{ width:560px; float:left; padding-top:10px;}
+
+#bottom .li-b{ width:90px; height:56px; float:left;padding-top:10px;padding-right:20px;}
+#bottom .li-b a{ width:90px; height:56px; display:block; text-indent:-9999px; overflow:hidden;}
+#bottom .li-c{ width:48px; height:56px; float:left; background: url(../images/top_ico01.gif) no-repeat; background-position:0px -205px;}
+#bottom .li-c a{ width:48px; height:56px; display:block; text-indent:-9999px; overflow:hidden;}
+#bottom .li-d{ width:48px; height:45px; float:left; background: url(../images/top_ico01.gif) no-repeat; background-position:-270px -205px;}
+#bottom .li-d a{ width:48px; height:45px; display:block; text-indent:-9999px; overflow:hidden;}
+
+#bottom .ul-c{ height:60px; background: url(../images/top_ico01.gif) no-repeat; background-position:146px -200px; margin-top:12px; padding-left:146px; padding-top:2px;}
+#bottom .ul-c a{ width:122px; height:52px; float:left; margin-right:12px; text-indent:-9999px; display:block; overflow:hidden;}

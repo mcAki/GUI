@@ -8,6 +8,7 @@
 <script src="js/prototype.lite.js" type="text/javascript"></script>
 <script src="js/moo.fx.js" type="text/javascript"></script>
 <script src="js/moo.fx.pack.js" type="text/javascript"></script>
+<link href="css/main_new.css" rel="stylesheet" type="text/css" />
 <style>
 body {
 	font:12px Arial, Helvetica, sans-serif;
@@ -145,7 +146,8 @@ H1 a {
 
 </head>
 
-<body>
+<body >
+
 <table width="100%" height="280" border="0" cellpadding="0" cellspacing="0" onselectstart="return false;">
   <tr>
     <td width="182" valign="top"><div id="container">
@@ -183,7 +185,10 @@ H1 a {
         </td>
   </tr>
 </table>
+
+
 </body>
+
 <script>
 document.onselectstart=function(e){
     var evt=e||event;

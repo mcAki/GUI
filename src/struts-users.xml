@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!--
+		增加用户 http://localhost:8080/MPRS/admin/staff!add.html 列出用户
+
+		http://localhost:8080/MPRS/admin/staff!list.html
+	-->
+	<package name="users" namespace="/users" extends="struts-core">
+		<action name="page" class="com.sys.volunteer.users.UserAction">
+			<result name="do">/user/user.jsp</result>
+			<result name="doEx">/user/userEx.jsp</result>
+			<result name="doExEx">/user/userExEx.jsp</result>
+			<result name="recharge">/user/recharge.jsp</result>
+			<result name="addKey">/user/addKey.jsp</result>
+			<result name="delKey">/user/delKey.jsp</result>
+			<result name="liandongPayPage">/user/liandongPayRecharge.jsp</result>
+			<result name="usergroup">/usergroup/usergroup.jsp</result>
+		</action>
+		
+		<action name="doAdd" class="com.sys.volunteer.users.UserAction" method="doAdd">
+			<!--<interceptor-ref name="token"/>
+			<result name="invalid.token">/user/user.jsp</result>			
+			--><result name="success"></result>
+			<result name="input">/user/user.jsp</result>
+		</action>
+		<action name="doAdds" class="com.sys.volunteer.users.UserAction" method="doAdds">
+			<!--<interceptor-ref name="token"/>
+			<result name="invalid.token">/user/user.jsp</result>			
+			--><result name="success"></result>
+			<result name="input">/user/userExEx.jsp</result>
+		</action>
+		
+		<action name="doRecharge" class="com.sys.volunteer.users.UserAction" method="doRecharge">
+			<!--<interceptor-ref name="token"/>
+			<result name="invalid.token">/user/user.jsp</result>			
+			--><result name="success"></result>
+			<result name="input">/user/recharge.jsp</result>
+			<interceptor-ref name="token" />
+           	<interceptor-ref name="defaultStack" />
+			<result name="invalid.token">/common/error2.jsp</result>
+		</action>
+		
+		<action name="doDrawing" class="com.sys.volunteer.users.UserAction" method="doDrawing">
+			<!--<interceptor-ref name="token"/>
+			<result name="invalid.token">/user/user.jsp</result>			
+			--><result name="success"></result>
+			<result name="input">/user/recharge.jsp</result>
+			<interceptor-ref name="token" />
+           	<interceptor-ref name="defaultStack" />
+			<result name="invalid.token">/common/error2.jsp</result>
+		</action>
+		
+		<action name="doDrawingCommission" class="com.sys.volunteer.users.UserAction" method="doDrawingCommission">
+			<result name="success">/user/showPointOutMessage.jsp</result>
+		</action>
+		
+		<action name="refreshReversal" class="com.sys.volunteer.users.UserAction" method="refreshReversal">
+			<result name="success"></result>
+		</action>
+		
+		<action name="batchRefreshReversal" class="com.sys.volunteer.users.UserAction" method="batchRefreshReversal">
+			<result name="success"></result>
+		</action>
+		
+		<action name="commitAccount" class="com.sys.volunteer.users.UserAction" method="commitAccount">
+			<result name="success"></result>
+		</action>
+		
+		<action name="batchCommitAccount" class="com.sys.volunteer.users.UserAction" method="batchCommitAccount">
+			<result name="success"></result>
+		</action>
+		
+		<action name="doAddKey" class="com.sys.volunteer.users.UserAction" method="doAddKey">
+			<!--<interceptor-ref name="token"/>
+			<result name="invalid.token">/user/user.jsp</result>			
+			--><result name="success"></result>
+			<result name="input">/user/addKey.jsp</result>
+		</action>
+		<action name="doDelKey" class="com.sys.volunteer.users.UserAction" method="doDelKey">
+			<result name="input">/user/addKey.jsp</result>
+		</action>
+		
+		<!-- 
+			修改志愿者信息
+			/users/page!modifyUser.do
+		-->
+		<action name="modifyUser" class="com.sys.volunteer.users.UserAction">
+			<!-- 修改志愿者信息（页面跳转）-->
+			<result name="do">/user/modifyUserProfile.jsp</result>
+			<!-- 修改志愿者信息（修改成功） -->
+			<result name="success">/common/message.jsp</result>
+			
+		
+		</action>
+		
+		<action name="doAddUsergroup" class="com.sys.volunteer.users.UserAction" method="doAddUsergroup">
+			<!--<interceptor-ref name="token"/>
+			<result name="invalid.token">/user/user.jsp</result>			
+			--><result name="success"></result>
+			<result name="input">/usergroup/usergroup.jsp</result>
+		</action>
+		
+		<!-- users/list!listUserForSelectManag.do -->
+		<action name="list" class="com.sys.volunteer.users.ListUserAction" >
+			<result name="success">/user/listUser.jsp</result>	
+			<result name="listUserEx">/user/listUserEx.jsp</result>
+			<result name="listUserExEx">/user/listUserExEx.jsp</result>
+			<result name="listGradeTwoUser">/user/listGradeTwoUser.jsp</result>
+			<result name="del">/user/listUser.jsp</result>	
+			<result name="listUserForSupply">/user/listUserForSupply.jsp</result>
+			<result name="listManagerByName">/user/listUserForSupply.jsp</result>
+			<result name="listUsergroup">/usergroup/listUsergroup.jsp</result>
+			<result name="listGroupForLog">/usergroup/listGroupForLog.jsp</result>
+		</action>
+	
+		<action name="pageMobile" class="com.sys.volunteer.users.UserUtilsAction">
+			<result name="do">/user/bindMobile.jsp</result>
+			<result name="success">/common/message.jsp</result>
+			<result name="input">/user/bindMobile.jsp</result>
+		</action>
+		
+		<!-- 查看用户增参与任务 -->
+		<!-- /users/listUserTasked!listUserTasked.do-->
+		
+		 <action name="listUserTasked" class="com.sys.volunteer.users.ListUserAction" method="listUserTasked">
+		 	<result name="success">/user/listUserTasked.jsp</result>	
+		</action>
+		
+	</package>	
+	
+	<package name="usersutils" namespace="/usersutils" extends="struts-core">
+	
+		<!-- 
+		进入选择修改内容
+		/usersutils/password!choosePassword.do 
+		 -->
+		<action name="password" class="com.sys.volunteer.users.UserUtilsAction">
+			<result name="success">/user/chooseModifyPassword.jsp</result>
+		</action>
+			
+		<!-- 
+		进入修改密码页面
+		/usersutils/loginPassword!loginPassword.do 
+		修改密码提交
+		/usersutils/loginPassword!modifyLoginPassword.do			 
+		-->
+		<action name="loginPassword" class="com.sys.volunteer.users.UserUtilsAction">
+			<result name="do">/user/modifyLoginPassword.jsp</result>
+			<result name="input">/user/modifyLoginPassword.jsp</result>
+		</action>
+		<action name="businessPassword" class="com.sys.volunteer.users.UserUtilsAction">
+			<result name="do">/user/modifyBusinessPassword.jsp</result>
+			<result name="input">/user/modifyBusinessPassword.jsp</result>
+		</action>
+		
+		<action name="modifyMobile" class="com.sys.volunteer.users.UserUtilsAction">
+			<result name="do">/user/modifyMobile.jsp</result>
+			<result name="input">/user/modifyMobile.jsp</result>
+		</action>
+		
+		<!-- 
+		进入修改电话操作码页面
+		/usersutils/phonePassword!phonePassword.do
+		修改密码提交
+		/usersutils/phonePassword!modifyPhonePassword.do
+		 -->
+		<action name="phonePassword" class="com.sys.volunteer.users.UserUtilsAction">
+			<result name="do">/user/modifyPhonePassword.jsp</result>
+			<result name="input">/user/modifyPhonePassword.jsp</result>
+			
+		</action>
+		<!-- 
+		进入修改个人信息页面
+		/usersutils/userProfile!userProfile.do
+		-->
+		
+		<action name="userProfile" class="com.sys.volunteer.users.UserUtilsAction">
+			<result name="do">/user/updateUserProfile.jsp</result>
+			<result name="input">/user/updateUserProfile.jsp</result>
+		</action>
+		
+		<action name="showPersonalByUserId" class="com.sys.volunteer.users.UserUtilsAction" method="showPersonalByUserId">
+			<result name="showPersonalByUserId">/user/viewUserProfileForShowModal3.jsp</result>
+		</action>
+		<action name="showPersonalByUserId4" class="com.sys.volunteer.users.UserUtilsAction" method="showPersonalByUserId4">
+			<result name="showPersonalByUserId4">/user/viewUserProfileForShowModal4.jsp</result>
+		</action>
+		
+		<!-- 
+		进入个人基本信息查询
+		 /usersutils/viewUserProfile.do
+		 
+		 -->
+		 <action name="viewUserProfile" class="com.sys.volunteer.users.UserUtilsAction" method="viewUserProfile">
+		 	<result name="do">/user/viewUserProfile.jsp</result>
+		 	<result name="viewUserProfile">/user/viewUserProfileForShowModal2.jsp</result>
+		 </action>
+		 
+		 <!-- 队员基本信息查询 -->
+		 <action name="showUserProfile" class="com.sys.volunteer.users.UserUtilsAction" method="showUserProfile">
+		 	<result name="do">/user/viewUserProfileForShowModal.jsp</result>
+		 </action>
+		 
+		 <!-- 管理员重置密码 -->
+		 <action name="resetPassword" class="com.sys.volunteer.users.UserUtilsAction" method="resetPassword">
+		 </action>
+		 <action name="resetBusinessPassword" class="com.sys.volunteer.users.UserUtilsAction" method="resetBusinessPassword">
+		 </action>
+		 
+		 <!-- 查询个人荣誉 -->
+		 <action name="list" class="com.sys.volunteer.awards.ListUserAwardAction" method="listAwardPersonal">
+		 	<result name="success">/user/listUserAward.jsp</result>	
+		</action>
+		
+		<!-- 查询荣誉列表 -->
+		 <action name="selectDateForSmileStar" class="com.sys.volunteer.awards.ListUserAwardAction" method="selectDateForSmileStar">
+		 	<result name="selectDateForSmileStar">/mission/selectDateForSmileStar.jsp</result>	
+		</action>
+		
+		<!-- 查询荣誉列表 -->
+		 <action name="listAwardPersonalBySelectDate" class="com.sys.volunteer.awards.ListUserAwardAction" method="listAwardPersonalBySelectDate">
+		 	<result name="success">/user/listUserAwardForLeader.jsp</result>
+		 	<result name="input">/mission/selectDateForSmileStar.jsp</result>
+		</action>
+		
+		<!-- 取消荣誉 -->
+		 <action name="delete" class="com.sys.volunteer.awards.ListUserAwardAction" method="delete">
+		</action>
+		
+		<!-- 恢复荣誉 -->
+		 <action name="regain" class="com.sys.volunteer.awards.ListUserAwardAction" method="regain">
+		</action>
+		
+		<!-- 取消提交荣誉 -->
+		 <action name="cancelCommit" class="com.sys.volunteer.awards.ListUserAwardAction" method="cancelCommit">
+		</action>
+		
+		<!-- 提交荣誉 -->
+		 <action name="doCommit" class="com.sys.volunteer.awards.ListUserAwardAction" method="doCommit">
+		</action>
+		
+		<!-- 荣誉 -->
+		<action name="listAwards" class="com.sys.volunteer.awards.ListUserAwardAction" method="listAwards">
+			<result name="success">/user/listAwards.jsp</result>
+		</action>
+		
+		 
+		 <!-- 查询个人工时 -->
+		 <action name="listUserServiceLog" class="com.sys.volunteer.users.ListUserAction" method="listUserServiceLog">
+		 	<result name="success">/user/listUserServiceLog.jsp</result>	
+		</action>
+		
+		<!-- 报名参加任务 -->
+		<action name="applyMission" class="com.sys.volunteer.mission.ListMissionAction">
+			<!-- 菜单进入报名参与任务列表 -->
+			<result name="listApplyMission">/user/applyMission.jsp</result>
+			<!-- 报名成功 -->
+			<result name="success">/user/applyMission.jsp</result>
+		</action>
+		
+		<!-- 志愿者详细信息 -->
+		<action name="detailed" class="com.sys.volunteer.users.UserAction">
+			<result name="do">/user/userDetail.jsp</result>
+		</action>
+		
+		
+	</package>
+</struts>

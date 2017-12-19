@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//OpenSymphony Group//XWork Validator 1.0.2//EN" "http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+
+<validators>
+
+
+	<field name="modifySupply.supplyName">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>供货商名称不能为空</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">3</param>
+			<param name="maxLength">20</param>
+			<message>用户名需最短 ${minLength}字,或最长${maxLength}字</message>
+		</field-validator>
+	</field>
+
+	<field name="modifySupply.balance">
+		<field-validator type="int">
+			<param name="trim">true</param>
+			<message>余额不能为空</message>
+		</field-validator>
+	</field>
+
+	
+</validators>

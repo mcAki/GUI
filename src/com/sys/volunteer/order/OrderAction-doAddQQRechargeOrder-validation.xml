@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//OpenSymphony Group//XWork Validator 1.0.2//EN" "http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+
+<validators>
+
+	<field name="mobile">
+		<field-validator type="required">
+			<message>号码不能为空</message>
+		</field-validator>
+		<field-validator type="regex">
+			<param name="expression"></param>
+			<message>输入的手机号码不合法！</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="max">13</param>
+			<message>号码不能超过13位!</message>
+		</field-validator>
+	</field>
+	
+	<field name="goodsNo">
+		<field-validator type="required">
+			<message>数量不能为空</message>
+		</field-validator>
+		<field-validator type="int">
+			<param name="min">1</param>
+			<message>数量必须大于等0</message>
+		</field-validator>
+	</field>
+	
+</validators>

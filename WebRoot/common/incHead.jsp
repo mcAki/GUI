@@ -23,6 +23,7 @@
 
 <!-- My97 jS -->
 <script language="javascript" type="text/javascript" src="${pageContext.request.contextPath}/js/My97DatePicker/WdatePicker.js"></script>
+<script language="javascript" type="text/javascript" src="${pageContext.request.contextPath}/js/divselect.js"></script>
 
 <!-- Seraph Skin JS -->
 <script language="javascript" src="${pageContext.request.contextPath}/js/skin.js"></script>

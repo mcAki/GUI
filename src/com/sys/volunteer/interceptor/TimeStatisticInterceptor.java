@@ -6,7 +6,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.StrutsStatics;
 
-import com.ages.model.Administrators;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import com.sys.volunteer.common.Const;
@@ -55,10 +54,10 @@ public class TimeStatisticInterceptor extends AbstractInterceptor {
 			log.info("httpRequest [namespace{" + namespace + "}  name:{" + name + "} method{"
 						+ method + "}]execution: " + httpTime + "ms.");
 			if (businessTime > 100) {
-				Administrators users = (Administrators) invocation.getInvocationContext().getSession().get(
+				Users users = (Users) invocation.getInvocationContext().getSession().get(
 					Const.USER_SESSION_KEY);
 				if (users != null) {
-					userNameString = users.getUserName() + "[ID:" + users.getId() + "]";
+					userNameString = users.getUserName() + "[ID:" + users.getUserId() + "]";
 				}
 				if (businessTime > 1000) {
 					log.info("[BAL][TIME OVER 1000MS]" + userNameString);
@@ -71,10 +70,10 @@ public class TimeStatisticInterceptor extends AbstractInterceptor {
 			log.info("Business execution: " + businessTime + "ms, " + businessPercent + "%");
 			log.info("Dao execution: " + daoTime + "ms, " + daoPercent + "%");
 			if (daoTime > 100) {
-				Administrators users = (Administrators) invocation.getInvocationContext().getSession().get(
-						Const.USER_SESSION_KEY);
+				Users users = (Users) invocation.getInvocationContext().getSession().get(
+					Const.USER_SESSION_KEY);
 				if (users != null) {
-					userNameString = users.getUserName() + "[ID:" + users.getId() + "]";
+					userNameString = users.getUserName() + "[ID:" + users.getUserId() + "]";
 				}
 				if (daoTime > 1000) {
 					log.info("[DAL][TIME OVER 1000MS]" + userNameString);

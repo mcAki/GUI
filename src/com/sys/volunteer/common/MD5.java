@@ -5,6 +5,9 @@
  *************************************************/
 package com.sys.volunteer.common;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+
 /*******************************************************************************
  * md5 类实现了RSA Data Security, Inc.在提交给IETF 的RFC1321中的MD5 message-digest 算法�??
  ******************************************************************************/
@@ -91,6 +94,25 @@ public class MD5
     {
         md5Init();
         md5Update(inbuf.getBytes(), inbuf.length());
+        md5Final();
+        digestHexStr = "";
+        for (int i = 0; i < 16; i++)
+        {
+            digestHexStr += byteHEX(digest[i]);
+        }
+        return digestHexStr;
+
+    }
+    
+    public String getMD5ofStr(String inbuf,String chargset)
+    {
+        md5Init();
+        try {
+			md5Update(inbuf.getBytes(chargset), inbuf.length());
+		} catch (UnsupportedEncodingException e) {
+			md5Update(inbuf.getBytes(), inbuf.length());
+			//e.printStackTrace();
+		}
         md5Final();
         digestHexStr = "";
         for (int i = 0; i < 16; i++)
@@ -417,6 +439,38 @@ public class MD5
         MD5 m5 = MD5.getiInstance();
         System.out.println(m5.getMD5ofStr("000000"));
         //670B14728AD9902AECBA32E22FA4F6BD
+        System.out.println(m5.MD5String("670B14728AD9902AECBA32E22FA4F6BD"));
     }
 
+    
+	
+    public static String MD5String(String plainText)
+    {
+        String str="";
+        try
+        {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(plainText.getBytes());
+            byte b[] = md.digest();
+
+            int i;
+
+            StringBuffer buf = new StringBuffer("");
+            for (int offset = 0; offset < b.length; offset++)
+            {
+                i = b[offset];
+                if (i < 0)
+                    i += 256;
+                if (i < 16)
+                    buf.append("0");
+                buf.append(Integer.toHexString(i));
+            }
+            str = buf.toString();
+        }
+        catch (Exception e)
+        {
+            str="";
+        }
+        return str;
+    }
 }

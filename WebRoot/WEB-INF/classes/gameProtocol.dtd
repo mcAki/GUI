@@ -1,0 +1,22 @@
+<!ELEMENT gameProtocol-config ( parse* ) >
+
+<!ELEMENT parse ( q* ,a* ) >
+<!ATTLIST parse protocol NMTOKEN #REQUIRED >
+<!ATTLIST parse className NMTOKEN #REQUIRED >
+<!ATTLIST parse springBeanName NMTOKEN #REQUIRED >
+<!ATTLIST parse methodName NMTOKEN #IMPLIED >
+<!ATTLIST parse comment CDATA #IMPLIED >
+
+<!ELEMENT q ( #PCDATA ) >
+<!ATTLIST q fieldName NMTOKEN #REQUIRED >
+<!ATTLIST q comment CDATA #IMPLIED >
+<!ATTLIST q fieldType ( eBoolean | eByte | eShort | eInt | eLong | eFixedStr | eStr | eFloat | eDouble | eDate | eTime | eDateTime | eList ) #REQUIRED >
+<!ATTLIST q length NMTOKEN #IMPLIED >
+<!ATTLIST q listDetailType CDATA #IMPLIED >
+
+<!ELEMENT a ( #PCDATA ) >
+<!ATTLIST a fieldName NMTOKEN #REQUIRED >
+<!ATTLIST a comment CDATA #IMPLIED >
+<!ATTLIST a fieldType ( eBoolean | eByte | eShort | eInt | eLong | eFixedStr | eStr | eFloat | eDouble | eDate | eTime | eDateTime | eList ) #REQUIRED >
+<!ATTLIST a length NMTOKEN #IMPLIED >
+<!ATTLIST a listDetailType CDATA #IMPLIED >

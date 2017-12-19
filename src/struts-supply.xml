@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="supply" namespace="/supply" extends="struts-core">
+		<action name="page" class="com.sys.volunteer.supply.SupplyAction">
+			<result name="do">/supply/supply.jsp</result>
+			<result name="recharge">/supply/rechargeSupply.jsp</result>
+		</action>
+		
+		<action name="doAdd" class="com.sys.volunteer.supply.SupplyAction" method="doAdd">
+			<!--<interceptor-ref name="token"/>
+			<result name="invalid.token">/user/user.jsp</result>			
+			--><result name="success"></result>
+			<result name="input">/supply/supply.jsp</result>
+		</action>
+		
+		<action name="doRecharge" class="com.sys.volunteer.supply.SupplyAction" method="doRecharge">
+			<!--<interceptor-ref name="token"/>
+			<result name="invalid.token">/user/user.jsp</result>			
+			--><result name="success"></result>
+			<result name="input">/supply/rechargeSupply.jsp</result>
+		</action>
+		
+		<action name="doDrawing" class="com.sys.volunteer.supply.SupplyAction" method="doDrawing">
+			<!--<interceptor-ref name="token"/>
+			<result name="invalid.token">/user/user.jsp</result>			
+			--><result name="success"></result>
+			<result name="input">/supply/rechargeSupply.jsp</result>
+		</action>
+		
+		<action name="doDel" class="com.sys.volunteer.supply.SupplyAction" method="doDel">
+			<result name="success"></result>
+			<result name="input">/supply/listSupply.jsp</result>
+		</action>
+		
+		<action name="doRecover" class="com.sys.volunteer.supply.SupplyAction" method="doRecover">
+			<result name="success"></result>
+			<result name="input">/supply/listSupply.jsp</result>
+		</action>
+		
+		<action name="commitAccount" class="com.sys.volunteer.supply.SupplyAction" method="commitAccount">
+			<result name="success"></result>
+		</action>
+		
+		<action name="batchCommitAccount" class="com.sys.volunteer.supply.SupplyAction" method="batchCommitAccount">
+			<result name="success"></result>
+		</action>
+		
+		<!-- 
+			供货商信息
+		-->
+		<action name="viewSupply" class="com.sys.volunteer.supply.SupplyAction" method="viewSupply">
+			<!-- 修改供货商信息（页面跳转）-->
+			<result name="do">/supply/modifySupplyProfile.jsp</result>
+		</action>
+		
+		<action name="modifySupply" class="com.sys.volunteer.supply.SupplyAction" method="modifySupply">
+			<!-- 修改供货商信息（页面跳转）-->
+			<result name="do">/supply/modifySupplyProfile.jsp</result>
+			<!-- 修改供货商信息（修改成功） -->
+			<result name="success">/common/message.jsp</result>
+			<result name="input">/supply/modifySupplyProfile.jsp</result>
+		</action>
+		
+		
+		<!-- users/list!listUserForSelectManag.do -->
+		<action name="list" class="com.sys.volunteer.supply.ListSupplyAction" >
+			<result name="success">/supply/listSupply.jsp</result>	
+			<result name="listSupplyForLog">/supply/listSupplyForLog.jsp</result>
+			<result name="listSupplyByName">/user/listSupplyForLog.jsp</result>
+		</action>
+	</package>	
+	
+</struts>

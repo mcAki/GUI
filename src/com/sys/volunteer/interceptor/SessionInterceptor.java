@@ -1,10 +1,9 @@
 package com.sys.volunteer.interceptor;
 
-import java.lang.reflect.Method;
-
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
-import com.sys.volunteer.common.Privilege;
+import com.sys.volunteer.common.Const;
 
 public class SessionInterceptor extends AbstractInterceptor {
 
@@ -14,9 +13,22 @@ public class SessionInterceptor extends AbstractInterceptor {
 		String name = invocation.getInvocationContext().getName();
 		String namespace = invocation.getProxy().getNamespace();
 		String method = namespace + invocation.getProxy().getMethod();
-//		if(invocation.getInvocationContext().getSession().get(Constants.USER_SESSION_KEY)==null){
-//			return "index";
+		
+		//不处理这3种
+//		if (name.equals("verify") /*验证码*/
+//				|| name.equals("login") 
+//				|| name.equals("adminLogin") /*登陆界面*/
+//				|| method.equals("attendanceRecvice")/*考勤机*/) {
+//			return invocation.invoke();
 //		}
+//		
+//		if(invocation.getInvocationContext().getSession().get(Const.USER_SESSION_KEY)==null){
+//			ActionContext.getContext().put("isMultipleMsg", false);
+//			ActionContext.getContext().put("message", "登陆超时,请重新登陆!!");
+//			ActionContext.getContext().put("links", "<a href='login.do'>点击登陆</a>");
+//			return "showmessage";
+//		}
+		
 //		Method[] methods =invocation.getAction().getClass().getDeclaredMethods();
 //		for(Method method1:methods){
 //			if(method.endsWith(method1.getName())){

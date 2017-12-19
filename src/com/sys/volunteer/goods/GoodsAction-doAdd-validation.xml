@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//OpenSymphony Group//XWork Validator 1.0.2//EN" "http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+
+<validators>
+
+
+	<field name="goods.goodsName">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>名称不能为空</message>
+		</field-validator>
+	</field>
+
+	<field name="goods.goodsFlag">
+		<field-validator type="int">	
+			<param name="min">1</param>
+			<message>请选择商品类型</message>
+		</field-validator>
+		
+	</field>
+	
+	
+</validators>

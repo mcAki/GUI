@@ -1,0 +1,144 @@
+@charset "gb2312";
+/**/
+body {	text-align:center; font:12px/1.5 Arial,'宋体'; margin:0; padding:0; color:#333333; line-height:21px; background-color: #fff;}
+
+
+div,form,img,ul,ol,li,dl,dt,dd {margin: 0; padding: 0; border: 0; }
+div {text-align:center;margin-right:auto;margin-left:auto;}
+h1,h2,h3,h4,h5,h6 {margin:0;padding:0;border:0;font:12px normal;}
+ul {text-align:left;}
+ul,li,ol {list-style:none;}
+
+button {VERTICAL-ALIGN: middle}
+
+button {CURSOR: pointer}
+
+
+h1 {FONT-SIZE: 18px}
+h2 {FONT-SIZE: 16px}
+h3 {FONT-SIZE: 13px;}
+h4 {FONT-SIZE: 14px;}
+h1 {FONT-WEIGHT: bold; display:inline;}
+h2 {FONT-WEIGHT: bold; display:inline;}
+h3 {FONT-WEIGHT: bold; display:inline; line-height:27px;}
+h4 {FONT-WEIGHT: bold; display:inline;}
+h5 {FONT-SIZE: 14px;}
+h6 {FONT-WEIGHT: bold; display:inline;}
+
+
+a {color:#333;text-decoration:none;} 
+a:hover {color:#FF9900;text-decoration:underline;} 
+
+/* 字体颜色 */  
+.white{color: #fff; text-decoration: none;}/* 白色 */
+.white a:link {color: #fff;text-decoration: none;}
+.white a:visited {color: #fff;	text-decoration: none;}
+.white a:hover {color: #FFCC00;text-decoration: underline;}
+
+.Black {color: #000; text-decoration: none;}/* 黑色 */
+.Black a:link {color: #000;text-decoration: none;}
+.Black a:visited {color: #000;	text-decoration: none;}
+.Black a:hover {color: #CC0000;text-decoration: underline;}
+
+.aBlack {color: #000; text-decoration:line-through}/* 黑色 */
+.aBlack a:link {color: #000;text-decoration: none;}
+.aBlack a:visited {color: #000;	text-decoration: none;}
+.aBlack a:hover {color: #CC0000;text-decoration: underline;}
+
+.Orange {color: #FF6600; text-decoration: none;}/* 橙色 */
+.Orange a:link {color: #FF6600;text-decoration: none;}
+.Orange a:visited {color: #FF6600;	text-decoration: none;}
+.Orange a:hover {color: #333;text-decoration: underline;}
+
+.yellow {color: #FBD639; text-decoration: none;}/* 黄色 */
+.yellow a:link {color: #FBD639;text-decoration: none;}
+.yellow a:visited {color: #FBD639;	text-decoration: none;}
+.yellow a:hover {color: #ccc; text-decoration: underline;}
+
+.Blue {color: #0571AD; text-decoration: none;}/* 兰色 */
+.Blue a:link {color: #0571AD;text-decoration: none;}
+.Blue a:visited {color: #0571AD;	text-decoration: none;}
+.Blue a:hover {color: #CC0000;text-decoration: underline;}
+
+.Grey {color: #666; text-decoration: none;}/* 灰色 */
+.Grey a:link {color: #666;text-decoration: none;}
+.Grey a:visited {color: #666;	text-decoration: none;}
+.Grey a:hover {color: #ff6600;text-decoration: underline;}
+
+.aGrey {color: #333; text-decoration: none;}/* 灰色 */
+.aGrey a:link {color: #333;text-decoration: none;}
+.aGrey a:visited {color: #333;	text-decoration: none;}
+.aGrey a:hover {color: #ff6600;text-decoration: underline;}
+
+.bGrey {color: #663300; text-decoration: none;}/* 灰色 */
+.bGrey a:link {color: #663300;text-decoration: none;}
+.bGrey a:visited {color: #663300;	text-decoration: none;}
+.bGrey a:hover {color: #ff6600;text-decoration: underline;}
+
+.cGrey {color: #790000; text-decoration: none;}/* 灰色 */
+.cGrey a:link {color: #790000;text-decoration: none;}
+.cGrey a:visited {color: #790000;	text-decoration: none;}
+.cGrey a:hover {color: #ff6600;text-decoration: underline;}
+
+.CRed {color: #DA3139; text-decoration: none;}/* 红色 */
+.CRed a:link {color: #DA3139;text-decoration: none;}
+.CRed a:visited {color: #DA3139;	text-decoration: none;}
+.CRed a:hover {color: #fff;text-decoration: underline;}  
+
+.Green {color: #334701; text-decoration: none;}/* 绿色 */
+.Green a:link {color: #334701;text-decoration: none;}
+.Green a:visited {color: #334701;	text-decoration: none;}
+.Green a:hover {color: #ff9900;text-decoration: underline;}  
+
+.f12 {font-size:12px;}
+.f14 {font-size:14px;}
+.f16 {font-size:16px; font-weight: bold;}
+.f18 {font-size:18px; font-weight: bold;}
+.f22 {font-size:22px; font-weight: bold;}
+.fb {font-weight: bold;}
+.fI {font-style: italic;}
+.ftext { text-align:center;}
+.fleft { text-align:left}
+.fright { text-align:right}
+
+.ti12 {text-indent:12px;}
+.ti24 {text-indent:24px;}
+
+.lh18 {line-height:18px;}
+.lh24 {line-height:24px;}
+
+.left {float:left;}
+.right {float:right;}
+
+.clear { clear:both;}
+.clearleft {clear:left;}
+.clearright {clear:right;}
+
+.blank0{ height:0px; clear:both; font-size:0px;overflow:hidden; display:block!important; }
+.blank3{ height:3px; clear:both; font-size:1px;overflow:hidden;  display:block!important; }
+.blank6{height:6px; font-size:1px; clear:both;overflow:hidden; display:block!important; }
+.blank9{height:9px; font-size:1px; clear:both;overflow:hidden; display:block!important; }
+.blank12{height:12px; font-size:1px;clear:both;overflow:hidden; display:block!important; }
+.blank24{height:24px; font-size:1px;clear:both;overflow:hidden; display:block!important; }
+.blank36{height:36px; font-size:1px;clear:both;overflow:hidden; display:block!important; }
+
+
+
+/* 线 */
+.line{ border-bottom:#CCCCCC 1px dashed;}
+
+/* 输入框 */
+.input114{ border:#A7A7A7 1px solid; height:18px; width:114px;  background:#fff; line-height:18px;}
+.input92{ border:#A7A7A7 1px solid; height:18px; width:92px;  background:#fff; line-height:18px;}
+.input50{ border:#A7A7A7 1px solid; height:18px; width:50px;  background:#fff; line-height:18px;}
+.input40{ border:#A7A7A7 1px solid; height:18px; width:40px;  background:#fff; line-height:18px;}
+.input100{ border:#A7A7A7 1px solid; height:16px; width:102px;  background:#fff; line-height:16px;}
+.input106{ border:#A7A7A7 1px solid; height:16px; width:106px;  background:#fff; line-height:16px;}
+.input110{ border:#A2CB57 1px solid; height:16px; width:120px;  background:#fff; line-height:16px;}
+.input500{ border:#7F9DB9 1px solid; height:18px; width:460px;  background:#fff; line-height:16px; color:#999; padding-left:9px;}
+.input500a{ border:#7F9DB9 1px solid; height:48px; width:460px;  background:#fff; line-height:16px; color:#999; padding-left:9px;}
+.input320{ border:#A7A7A7 1px solid; height:48px; width:340px;  background:#fff; line-height:16px; color:#999; padding-left:9px;}
+
+
+
+

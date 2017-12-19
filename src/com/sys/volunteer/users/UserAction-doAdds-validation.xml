@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//OpenSymphony Group//XWork Validator 1.0.2//EN" "http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+
+<validators>
+
+
+	<field name="users.loginName">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>登录名称不能为空</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">3</param>
+			<param name="maxLength">20</param>
+			<message>用户名需最短 ${minLength}字,或最长${maxLength}字</message>
+		</field-validator>
+	</field>
+
+	<field name="users.userPassword">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>登录密码不能为空</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">6</param>
+			<param name="maxLength">12</param>
+			<message>登录密码需最短 ${minLength}字,或最长${maxLength}字</message>
+		</field-validator>
+	</field>
+
+	<field name="users.userName">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>用户昵称不能为空</message>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">2</param>
+			<param name="maxLength">20</param>
+			<message>用户姓名最短 ${minLength}字,或最长${maxLength}字</message>
+		</field-validator>
+	</field>
+
+	<field name="users.mobile">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>手机号码不能为空</message>
+		</field-validator>
+		<field-validator type="regex">
+			<param name="expression"></param>
+			<message>输入的手机号码不合法！</message>
+		</field-validator>
+	</field>
+	
+	<!-- <field name="users.email">
+	
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>请填写邮箱</message>
+		</field-validator>
+		<field-validator type="email">
+			<message>非法的email格式</message>
+		</field-validator>
+	</field>
+	
+	<field name="users.gender">
+		<field-validator type="int">	
+			<param name="min">1</param>
+			<param name="max">2</param>
+			<message>请选择性別</message>
+		</field-validator>
+		
+	</field>
+	 -->
+	<field name="users.userType">
+		<field-validator type="int">	
+			<param name="min">1</param>
+			<param name="max">3</param>
+			<message>请选择用户类型</message>
+		</field-validator>
+		
+	</field>
+	
+	<field name="users.reversalCount">
+		<field-validator type="int">	
+			<param name="min">0</param>
+			<message>请填写可冲正次数</message>
+		</field-validator>
+		
+	</field>
+	
+	<field name="users.maxReversalCount">
+		<field-validator type="int">	
+			<param name="min">0</param>
+			<message>请填写最大可冲正次数</message>
+		</field-validator>
+		
+	</field>
+	
+	
+</validators>

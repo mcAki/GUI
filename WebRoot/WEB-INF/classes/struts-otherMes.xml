@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	
+	<package name="othermes" namespace="/othermes" extends="struts-core">
+		<action name="addOtherMesPage" class="com.sys.volunteer.otherMes.OtherMesAction" method="addOtherMesPage">
+			<result name="page">/otherMes/addOtherMes.jsp</result>
+		</action>
+		<action name="delOtherMes" class="com.sys.volunteer.otherMes.OtherMesAction" method="delOtherMes">
+			<result name="success" type="redirect">otherMesList.do</result>
+		</action>
+		<action name="addOtherAct" class="com.sys.volunteer.otherMes.OtherMesAction" method="addOtherMes">
+			<result name="success" type="redirect">otherMesList.do</result>
+		</action>
+		<action name="otherMesList" class="com.sys.volunteer.otherMes.OtherMesAction" method="findAll">
+			<result name="success">/otherMes/otherMesList.jsp</result>
+		</action>
+		<action name="updateOtherMesPage" class="com.sys.volunteer.otherMes.OtherMesAction" method="updateOtherMesPage">
+			<result name="page">/otherMes/updateOtherMes.jsp</result>
+		</action>
+		<action name="updateOtherMesAct" class="com.sys.volunteer.otherMes.OtherMesAction" method="updateOtherMes">
+			<result name="success" type="redirect">otherMesList.do</result>
+		</action>
+		<action name="showOtherMes" class="com.sys.volunteer.otherMes.OtherMesAction" method="showOtherMes">
+			<result name="success" type="redirect">/otherMes/showOtherMes.jsp</result>
+		</action>
+		<action name="addType" class="com.sys.volunteer.otherMes.OtherMesAction" method="addType">
+		</action>
+		<action name="findOneResult" class="com.sys.volunteer.otherMes.OtherMesAction" method="findOneResult"> 
+		      <result name="success">/otherMes/otherMesOne.jsp </result>
+		</action>
+		<action name="findByType" class="com.sys.volunteer.otherMes.OtherMesAction" method="findByType"> 
+		      <result name="success">/otherMes/otherMesOne.jsp </result>
+		</action>
+		<action name="selBackOneNews" class="com.sys.volunteer.otherMes.OtherMesAction" method="selBackOneNews"> 
+		</action>
+	</package>
+</struts>

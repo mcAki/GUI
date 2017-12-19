@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="otp" namespace="/otp" extends="struts-core">
+		
+		<action name="page" class="com.sys.volunteer.otp.OTPAction">
+			<result name="do">/otp/testOTP.jsp</result>
+			<result name="input">/otp/testOTP.jsp</result>
+		</action>
+		
+		
+		<action name="testOTP" class="com.sys.volunteer.otp.OTPAction" method="testOTP">
+			<result name="input">/otp/testOTP.jsp</result>
+		</action>
+	</package>	
+	
+</struts>

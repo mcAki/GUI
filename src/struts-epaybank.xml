@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	
+	<package name="epaybank" namespace="/epaybank" extends="struts-core">
+		<action name="page" class="com.sys.volunteer.epaybank.EpayBankAction">
+			<result name="success">/epaybank/epaybank.jsp</result>
+		</action>
+		
+		<action name="authCharge" class="com.sys.volunteer.epaybank.EpayBankAction" method="authCharge">
+			<interceptor-ref name="token" />
+           	<interceptor-ref name="defaultStack" />
+			<result name="invalid.token">/common/error2.jsp</result>
+			<result name="input">/epaybank/epaybank.jsp</result>
+		</action>
+	</package>
+</struts>

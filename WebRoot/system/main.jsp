@@ -19,13 +19,16 @@ BODY {
 -->
 </style>
 </head>
-<frameset rows="100,*"  frameborder="NO" border="0" framespacing="0" style="background-color:#F5FFEA;">
+
+<frameset rows="64,*"  frameborder="NO" border="0" framespacing="0" style="background-color:#F5FFEA;">
 	<frame src="frame!top.html" noresize="noresize" frameborder="NO" name="topFrame" scrolling="no" marginwidth="0" marginheight="0" target="main" />
   <frameset cols="200,*" id="frame">
 	<frame src="frame!left.html" name="leftFrame" noresize="noresize" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" target="main" />
 	<frame src="frame!defPage.html" name="main" marginwidth="0" marginheight="0" frameborder="0" scrolling="auto" target="_self" />
   </frameset>
+
 <noframes>
   <body></body>
     </noframes>
+
 </html>

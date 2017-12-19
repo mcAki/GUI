@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gameProtocol PUBLIC "gameProtocolDTD"
+	"gameProtocol.dtd">
+<gamePrococol-config>
+
+	<!-- 协议包设定文件
+	主属性<parse/>
+		protocol：协议号。（允许值范围：1 - 65535）
+		className：协议名。传输包命名
+		springBeanName：绑定Spring指定的服务，必须服务存在
+		comment：包注释
+		direction：
+	发问包字段<q/>
+		fieldType：字段类型
+		fieldName：字段命名。
+		comment：字段注释。
+		length: 字段长度,发送时按长度发送
+	应答包字段<a/>如果无需应答，可不填任何<a>字段
+		fieldType：字段类型
+		fieldName：字段命名。
+		comment：字段注释。		
+		length: 字段长度,提取时按长度提取
+	 -->
+	<!-- 过程还需要修改(包的长度),暂时定义这2个报文 -->
+	
+	
+	<parse protocol="auto" className="PosRechargePo" springBeanName="posService" methodName="posRechargeInvoke" comment="空中充值包">
+		<q fieldType="eFixedStr" fieldName="userId" length="32" comment="用户id" />
+		<q fieldType="eFixedStr" fieldName="terminalNo" length="32" comment="终端机号" />
+		<q fieldType="eInt" fieldName="goodsTypeId" length="1" comment="商品类型id" />
+		<q fieldType="eFixedStr" fieldName="mobile" length="11" comment="手机号码" />
+		<q fieldType="eInt" fieldName="value" comment="金额" />
+		<a fieldType="eStr" fieldName="userName" comment="商户名称 " />
+		<a fieldType="eFixedStr" fieldName="terminalNo" length="32" comment="终端机号" />
+		<a fieldType="eStr" fieldName="desc" comment="操作员" />
+		<a fieldType="eInt" fieldName="orderType" length="1" comment="交易类型" />
+		<a fieldType="eStr" fieldName="terminalTradeNo" comment="终端批号" />
+		<a fieldType="eFixedStr" fieldName="orderId" length="32" comment="流水号" />
+		<a fieldType="eDate" fieldName="createTime" comment="交易时间" />
+		<a fieldType="eFixedStr" fieldName="mobile" comment="手机号码" />
+		<a fieldType="eInt" fieldName="value" comment="交易金额" />
+		<a fieldType="eInt" fieldName="state" length="1" comment="交易状态:0.处理中 1.成功 2.失败" />
+	</parse>
+	
+	<parse protocol="auto" className="PosBuyCardPo" springBeanName="posService" methodName="posBuyCardInvoke" comment="购买卡密包">
+		<q fieldType="eFixedStr" fieldName="userId" length="32" comment="用户id" />
+		<q fieldType="eFixedStr" fieldName="terminalNo" length="32" comment="终端机号" />
+		<q fieldType="eInt" fieldName="goodsTypeId" length="1" comment="商品类型id" />
+		<q fieldType="eInt" fieldName="value" comment="金额" />
+		<q fieldType="eInt" fieldName="goodsNo" comment="购买数量" />
+		<a fieldType="eStr" fieldName="userName" comment="商户名称 " />
+		<a fieldType="eFixedStr" fieldName="terminalNo" length="32" comment="终端机号" />
+		<a fieldType="eStr" fieldName="desc" comment="操作员" />
+		<a fieldType="eInt" fieldName="orderType" length="1" comment="交易类型" />
+		<a fieldType="eStr" fieldName="terminalTradeNo" comment="终端批号" />
+		<a fieldType="eFixedStr" fieldName="orderId" length="32" comment="流水号" />
+		<a fieldType="eDate" fieldName="createTime" comment="交易时间" />
+		<a fieldType="eInt" fieldName="value" comment="交易金额" />
+		<a fieldType="eInt" fieldName="state" length="1" comment="交易状态:0.处理中 1.成功 2.失败" />
+		<a fieldType="eStr" fieldName="cardCode" comment="卡密批号" />
+		<a fieldType="eStr" fieldName="cardPassword" comment="卡密密码" />
+	</parse>
+	
+</gamePrococol-config>

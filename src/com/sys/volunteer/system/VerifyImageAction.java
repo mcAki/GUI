@@ -7,16 +7,11 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
-import javax.servlet.ServletOutputStream;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.sys.volunteer.baseaction.BaseAction;
-//import java.awt.*;
-//import java.awt.image.*;
-//import java.util.*;
-//import javax.imageio.*;
 import com.sys.volunteer.common.Const;
 
 @Controller

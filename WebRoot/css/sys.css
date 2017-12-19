@@ -1,5 +1,12 @@
 @charset "utf-8";
 
+/**.list_tb_002{width:100%; background:url(../img/icon08.jpg) repeat-x left top; line-height:35px; border:1px solid #E3D9E1;}**/
+.list_tb_002{width:100%;  line-height:35px; border:1px solid #669999;}
+.list_tb_002 td{border-right:1px solid #669999; border-bottom:1px solid #669999; text-align: center; line-height: 35px;}
+.list_tb_002 th{text-align: center; border-right:1px solid #669999; border-bottom:1px solid #669999;background-color: #D5EAF8}
+.trmo {
+	background-color: #5F9F9F !important;
+}
 .list_tb {
 	height: 16px;
 	line-height: 16px;

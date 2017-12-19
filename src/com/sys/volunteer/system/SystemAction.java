@@ -1,34 +1,39 @@
 package com.sys.volunteer.system;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.ages.model.Administrators;
-import com.ages.model.ConnectInfo;
-import com.ages.model.ServerInfoBean;
-import com.ages.util.DbManager;
 import com.sys.volunteer.baseaction.BaseAction;
 import com.sys.volunteer.common.Const;
+import com.sys.volunteer.otherMes.OtherMesService;
+import com.sys.volunteer.pojo.OtherMes;
+import com.sys.volunteer.pojo.Useraccount;
+import com.sys.volunteer.pojo.Users;
+import com.sys.volunteer.useraccount.UseraccountService;
 
 @Controller
 @Scope("prototype")
 public class SystemAction extends BaseAction {
 	
-	private Administrators user;
-	private List<ConnectInfo> servers;
-	private Integer serverId;
-	private String result;
+	@Resource
+	UseraccountService useraccountService;
+	@Resource
+	private OtherMesService otherMesService;
 	
+	private Users user;
+	
+	private Useraccount useraccount; 
 	/**
 	 * 读取UserBean
 	 * @throws Exception 
 	 */
 	public boolean getUserBean(){
 		if(getSession().containsKey(Const.USER_SESSION_KEY)){
-			user = (Administrators)getSession().get( Const.USER_SESSION_KEY );
+			user = (Users)getSession().get( Const.USER_SESSION_KEY );
 			return true;
 		}else {
 			return false;
@@ -36,11 +41,9 @@ public class SystemAction extends BaseAction {
 	}
 	
 	public String top() throws Exception {
-		servers = DbManager.getInstance().getConnectInfos();
-//		ConnectInfo connectInfo = new ConnectInfo();
-//		connectInfo.setId(2);
-//		connectInfo.setServername("S2");
-//		servers.add(connectInfo);
+		if(getUserBean()){
+			String str = user.getUsergroup().getGroupName();
+		}
 		return "top";
 	}
 
@@ -48,9 +51,29 @@ public class SystemAction extends BaseAction {
 		//getUserBean();
 		return "left";
 	}
+	public String left_front() throws Exception {
+		//getUserBean();
+		return "left_front";
+	}
+	public String header() throws Exception {
+		//getUserBean();
+		return "header";
+	}
+	public String center() throws Exception {
+		//getUserBean();
+		return "center";
+	}
+	public String center_right() throws Exception {
+		//getUserBean();
+		return "center_right";
+	}
+	public String footer() throws Exception {
+		//getUserBean();
+		return "footer";
+	}
 	
 	public String defPage() throws Exception {
-		
+		useraccount = useraccountService.findUseraccountByUseraccountId(getSessionUser());
 		return "defPage";
 	}
 	
@@ -59,70 +82,51 @@ public class SystemAction extends BaseAction {
 			return "main";
 		}else {
 			
-			return ShowMessage(MSG_TYPE_WARNING,"超时操作,请重新登录系统", "点击登录", "adminLogin.do",0);
+			return ShowMessage(MSG_TYPE_WARNING,"超时操作,请重新登录系统", "点击登录", "login.do",0);
 		}
 	}
-	
-	/**
-	 * 改session的服务器ID
-	 * @throws Exception
-	 */
-	public String changeServer() throws Exception {
-		if (serverId != null) {
-			ConnectInfo connectInfo = DbManager.getInstance().getConnectInfos().get(serverId-1);
-			getSession().put(Const.SERVERID_SESSION_KEY, connectInfo);
-			result = "success";
+	public String main_front() throws Exception {
+		if(getUserBean()){
+			
+			List<OtherMes>  otherMesTopNewList = otherMesService.findNewTop();
+			List<OtherMes>  otherMesCommonNewList = otherMesService.findCommonTop();
+			if(otherMesTopNewList==null||otherMesTopNewList.size()<=0) otherMesTopNewList = otherMesService.findByType(1);
+			if(otherMesTopNewList!=null&&otherMesTopNewList.size()>0){
+				
+				this.getSession().put("otherMesTopNewFirst", otherMesTopNewList.get(0));
+				this.getSession().put("otherMesTopNewList", otherMesTopNewList);
+			}
+			if(otherMesCommonNewList!=null&&otherMesCommonNewList.size()>0){
+				this.getSession().put("otherMesCommonNewList", otherMesCommonNewList);
+			}
+			
+			return "main_front";
 		}else {
-			result = "failed";
+			
+			return ShowMessage(MSG_TYPE_WARNING,"超时操作,请重新登录系统", "点击登录", "login.do",0);
 		}
-		return "json";
-	}
-	
-	/**
-	 * 选择服务器提示
-	 * @return
-	 * @throws Exception
-	 */
-	public String noserver() throws Exception {
-		return ShowMessage(MSG_TYPE_STOP, "请选择服务器!", "", "", 0);
 	}
 
 	/**
 	 * @return the user
 	 */
-	public Administrators getUser() {
+	public Users getUser() {
 		return user;
 	}
 
 	/**
 	 * @param user the user to set
 	 */
-	public void setUser(Administrators user) {
+	public void setUser(Users user) {
 		this.user = user;
 	}
 
-	public List<ConnectInfo> getServers() {
-		return servers;
+	public Useraccount getUseraccount() {
+		return useraccount;
 	}
 
-	public void setServers(List<ConnectInfo> servers) {
-		this.servers = servers;
-	}
-
-	public Integer getServerId() {
-		return serverId;
-	}
-
-	public void setServerId(Integer serverId) {
-		this.serverId = serverId;
-	}
-
-	public String getResult() {
-		return result;
-	}
-
-	public void setResult(String result) {
-		this.result = result;
+	public void setUseraccount(Useraccount useraccount) {
+		this.useraccount = useraccount;
 	}
 
 }

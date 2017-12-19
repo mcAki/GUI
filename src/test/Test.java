@@ -1,19 +1,20 @@
 package test;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.Calendar;
 
-import org.apache.poi.util.List2d;
-
-import com.sys.volunteer.common.DateUtil;
-import com.sys.volunteer.vo.LivenessVo;
+import com.sys.volunteer.common.KAUtil;
+import com.sys.volunteer.common.LiandongUtil;
+import com.sys.volunteer.common.MD5;
+import com.sys.volunteer.common.MD5Ex;
+import com.sys.volunteer.common.SDKClientUtil;
+import com.sys.volunteer.common.StringUtil;
+import com.sys.volunteer.common.SysUtil;
+import com.sys.volunteer.goods.GoodsService;
+import com.sys.volunteer.xunyuan.util.GenPackHeader;
 
 public class Test {
 
-	//private static GoodsService goodsService;
+	private static GoodsService goodsService;
 
 	/**
 	 * @param args
@@ -89,48 +90,22 @@ public class Test {
 		// System.out.println(i);
 //		String param = "Action=" + LiandongUtil.ACTION_QUERY_ORDER + "&UserName=" + LiandongUtil.userName
 //				+ "&OrderID=" + "37bf9fa34095ecb4014095fdb5330025";
-//		MD5 md5 = MD5.getiInstance();
-//		String Key = md5.getMD5ofStr(param + LiandongUtil.sign);
+		//MD5 md5 = MD5.getiInstance();
+//		String Key = MD5Ex.getMD5Str(param + LiandongUtil.sign,"utf-8");
+//		String Key2 = MD5Ex.getMD5Str(param + LiandongUtil.sign,"gbk");
+//		System.out.println(Key);
+//		System.out.println(Key2);
 //		param = param + "&Key=" + Key.toLowerCase();
 //		String url = LiandongUtil.LINK_URL + "?" + param;
 //		System.out.println(url);
-//		String recordKey = "8000023IP8000023201401101603197646531372b74370eebc01437b2d26cf0124Pf3cb38955e4efc2ab61b9815381b881a";
-//		recordKey = MD5Ex.getMD5Str(recordKey, "GB2312").substring(0, 16).toUpperCase();
-//		System.out.println(recordKey);
-//		String d1 = "2010-01-01 06:54:33";
-//		String d2 = "2010-01-02 05:45:18";
-//		Date date1 = DateUtil.formatDate(d1,DateUtil.CM_LONG_DATE_FORMAT);
-//		Date date2 = DateUtil.formatDate(d2,DateUtil.CM_LONG_DATE_FORMAT);
-//		long l = DateUtil.subtractTime(date2, date1, 1);
-//		System.out.println(l);
-//		String a="tgw_l7_forward\r\nHost:app12345.qzoneapp.com:80\r\n\r\n";
-//		byte[] arr=a.getBytes();
-//		System.out.println();
-//
-//		String a1="tgw_l7_forward\\r\\nHost:app12345.qzoneapp.com:80\\r\\n\\r\\n";
-//		a1 = a1.replaceAll("\\\\r", "\r").replaceAll("\\\\n", "\n");
-//		byte[] arr1=a1.getBytes();
-//		System.out.println();
-		List<String> list = new ArrayList<String>();
-		list.add("1");
-		list.add("2");
-		list.add("3");
-		list.add("4");
-		list.add("5");
-		list.add("6");
-		list.add("7");
-		list.add("8");
-		list.add("9");
-		list.add("10");
-		list.add("11");
-		List<String> list2 = new ArrayList<String>();
-		for (int i = 0; i < list.size(); i++) {
-			if (i%5==0) {
-				list2.removeAll(list2);
-			}
-			list2.add(list.get(i));
-		}
-		System.out.println(list2);
+//		String key = "869590602177";
+//		String md5Ex = MD5Ex.getMD5Str(key);
+//		System.out.println(md5Ex);
+//		double d = 93.895d;
+//		System.out.println(SysUtil.formatDouble(d*1000, "000000000"));
+//		SDKClientUtil.testRegistDetailInfo();
+		String str = "0002342304560";
+		System.out.println(str.replaceFirst("^0*", ""));
 	}
 
 }

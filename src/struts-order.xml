@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="order" namespace="/order" extends="struts-core">
+	
+		<action name="page" class="com.sys.volunteer.order.OrderAction">
+			<result name="do">/order/order.jsp</result>
+			<result	name="mobileOrder">/order/mobileOrder.jsp</result>
+			<result	name="gameCardOrder">/order/gameCardOrder.jsp</result> 
+			<result	name="batchMobileOrder">/order/batchMobileOrder.jsp</result> 
+			<result name="manualOrder">/order/modifyCardNo.jsp</result>
+			<result name="queryBalance">/order/queryBalance.jsp</result>
+			<result name="doQueryBalance">/order/queryBalanceLoading.jsp</result>
+			<result name="chargeTelecom">/order/telecomOrder.jsp</result>
+			<result name="batchMobileOrderEx">/order/batchMobileOrder.jsp</result>
+			<result name="reverseOrder">/order/reverseOrder.jsp</result>
+			<result name="gameRecharge">/order/gameRechargeOrder.jsp</result>
+			<result name="QQRecharge">/order/QQRechargeOrder.jsp</result>
+		</action>
+		
+		<action name="refresh" class="com.sys.volunteer.order.OrderAction" method="refreshQueryBalance">
+		</action>
+		<action name="batchCancelOrderExe" class="com.sys.volunteer.order.OrderAction" method="batchCancelOrderExe">
+		</action>
+		
+		<action name="doManualOrder" class="com.sys.volunteer.order.OrderAction" method="doManualOrder">
+			
+		</action>
+		<!-- 增加备注 -->
+		<action name="addOrderComments" class="com.sys.volunteer.order.OrderAction" method="addOrderComments"></action>
+		
+		<action name="doAddMobileOrder" class="com.sys.volunteer.order.OrderAction" method="doAddMobileOrder">
+           	<interceptor-ref name="token" />
+           	<interceptor-ref name="defaultStack" />
+			<result name="invalid.token">/common/error2.jsp</result>
+			<result name="input">/order/mobileOrder.jsp</result>
+		</action>
+		
+		<action name="doChargeTelecom" class="com.sys.volunteer.order.OrderAction" method="doChargeTelecom">
+           	<interceptor-ref name="token" />
+           	<interceptor-ref name="defaultStack" />
+			<result name="invalid.token">/common/error2.jsp</result>
+			<result name="input">/order/queryBalance.jsp</result>
+		</action>
+		
+		<action name="showMobileGSD" class="com.sys.volunteer.order.OrderAction" method="showMobileGSD">
+			<result name="showMobile">/order/mobileOrder.jsp</result>
+		</action>
+		
+		<action name="doAddMobileOrderEx" class="com.sys.volunteer.order.OrderAction" method="doAddMobileOrderEx">
+           	<interceptor-ref name="token" />
+           	<interceptor-ref name="defaultStack" />
+			<result name="invalid.token">/common/error2.jsp</result>
+			<result name="input">/order/mobileOrder.jsp</result>
+		</action>
+		
+		<action name="doAddMobileOrderExe" class="com.sys.volunteer.order.OrderAction" method="doAddMobileOrderExe">
+           	<interceptor-ref name="token" />
+           	<interceptor-ref name="defaultStack" />
+			<result name="invalid.token">/common/error2.jsp</result>
+			<result name="input">/order/mobileOrder.jsp</result>
+		</action>
+		
+		<action name="doAddGameRechargeOrder" class="com.sys.volunteer.order.OrderAction" method="doAddGameRechargeOrder">
+           	<interceptor-ref name="token" />
+           	<interceptor-ref name="defaultStack" />
+			<result name="invalid.token">/common/error2.jsp</result>
+			<result name="input">/order/gameRechargeOrder.jsp</result>
+		</action>
+		
+		<action name="doAddQQRechargeOrder" class="com.sys.volunteer.order.OrderAction" method="doAddQQRechargeOrder">
+           	<interceptor-ref name="token" />
+           	<interceptor-ref name="defaultStack" />
+			<result name="invalid.token">/common/error2.jsp</result>
+			<result name="input">/order/QQRechargeOrder.jsp</result>
+		</action>
+		
+		<action name="doBatchMobileOrderEx" class="com.sys.volunteer.order.OrderAction" method="doBatchMobileOrderEx">
+           	<interceptor-ref name="token" />
+           	<interceptor-ref name="defaultStack" />
+			<result name="invalid.token">/common/error2.jsp</result>
+			<result name="input">/order/batchmobileOrder.jsp</result>
+		</action>
+		
+		<action name="doAddCardOrder" class="com.sys.volunteer.order.OrderAction" method="doAddCardOrder">
+           	<interceptor-ref name="token" />
+           	<interceptor-ref name="defaultStack" />
+			<result name="invalid.token">/common/error2.jsp</result>
+			<result name="input">/order/gameCardOrder.jsp</result>
+		</action>
+		<action name="doAddCardOrderCheckOutPrice" class="com.sys.volunteer.order.OrderAction" method="doAddCardOrderCheckOutPrice">
+		</action>
+		
+	
+		
+		<action name="reversalOrder" class="com.sys.volunteer.order.OrderAction" method="reversalOrder">
+			
+		</action>
+		<action name="checkSupplyCanreverse" class="com.sys.volunteer.order.OrderAction" method="checkSupplyCanreverse">
+			
+		</action>
+		
+		<action name="reversalOrders" class="com.sys.volunteer.order.OrderAction" method="reversalOrders">
+			
+		</action>
+		
+		<action name="dealOrder" class="com.sys.volunteer.order.OrderAction" method="dealOrder">
+			
+		</action>
+		<action name="dealOrders" class="com.sys.volunteer.order.OrderAction" method="dealOrders">
+			
+		</action>
+		
+		<action name="dealOrdersNoReturn" class="com.sys.volunteer.order.OrderAction" method="dealOrdersNoReturn">
+			
+		</action>
+		
+		<action name="cancelOrder" class="com.sys.volunteer.order.OrderAction" method="cancelOrder">
+			
+		</action>
+		
+		<action name="cancelOrderNoReturn" class="com.sys.volunteer.order.OrderAction" method="cancelOrderNoReturn">
+			
+		</action>
+		
+		<action name="cancelOrderEx" class="com.sys.volunteer.order.OrderAction" method="cancelOrderEx">
+			
+		</action>
+		<action name="cancelOrderExe" class="com.sys.volunteer.order.OrderAction" method="cancelOrderExe">
+			
+		</action>
+		
+		<action name="cancelOrderNoReturnEx" class="com.sys.volunteer.order.OrderAction" method="cancelOrderNoReturnEx">
+			
+		</action>
+		
+		<action name="cancelOrderNoReturnExe" class="com.sys.volunteer.order.OrderAction" method="cancelOrderNoReturnExe">
+			
+		</action>
+		
+		<action name="reversalOrdersEx" class="com.sys.volunteer.order.OrderAction" method="reversalOrdersEx">
+			
+		</action>
+		
+		<action name="reverseOrderSuccess" class="com.sys.volunteer.order.OrderAction" method="reverseOrderSuccess">
+			
+		</action>
+		
+		<action name="reverseOrderFailed" class="com.sys.volunteer.order.OrderAction" method="reverseOrderFailed">
+			
+		</action>
+		
+		<action name="startBatchOrder" class="com.sys.volunteer.order.OrderAction" method="startBatchOrder">
+			
+		</action>
+		
+		<action name="pauseBatchOrder" class="com.sys.volunteer.order.OrderAction" method="pauseBatchOrder">
+			
+		</action>
+		
+		<action name="restoreBatchOrder" class="com.sys.volunteer.order.OrderAction" method="restoreBatchOrder">
+			
+		</action>
+		
+		<action name="list" class="com.sys.volunteer.order.ListOrderAction" >
+			<result name="success">/order/listOrder.jsp</result>
+			<result name="listForUser">/order/listOrderForUser.jsp</result>
+			<result name="listOrderdetail">/order/listOrderdetail.jsp</result>
+			<result name="listMainorderVO">/order/listOrderVO.jsp</result>
+			<result name="listReversalResponse">/terminalAirReversalResponseNew/listReversalResponse.jsp</result>
+			<result name="listReversalOrder">/order/listReversalOrder.jsp</result>
+			<result name="statisticsOrderVo">/order/statisticsOrderVoPage.jsp</result>
+			<result name="statisticsOrderVOList">/order/statisticsOrderVoPage.jsp</result>
+			<result name="listBatchOrder">/order/listBatchOrder.jsp</result>
+			<result name="viewBatchOrder">/order/viewBatchOrder.jsp</result>
+		</action>
+		
+		<action name="lists" class="com.sys.volunteer.order.ListOrderAction" method="listOrder2Customer">
+			<result name="listOrder2Customer">/order/listOrders.jsp</result>
+			<result name="listOrderdetail">/order/listOrderdetail.jsp</result>
+			<result name="listMainorderVO">/order/listOrderVO.jsp</result>
+			<result name="listReversalResponse">/terminalAirReversalResponseNew/listReversalResponse.jsp</result>
+		</action>
+		
+		<action name="mainOrderShowModal" class="com.sys.volunteer.order.ListOrderAction" method="mainOrderShowModal">
+			<result name="mainOrderShowModal">/order/viewOrderForShowModal.jsp</result>
+		</action>
+		
+		
+	</package>	
+	
+</struts>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	
+	<package name="alipayCharge" namespace="/alipayCharge" extends="struts-core">
+		<action name="alipayPage" class="com.sys.volunteer.alipay.AlipayChargeAct" method="alipayPage">
+			<result name="success">/alipayCharge/alipayCharge.jsp</result>
+		</action>
+		<action name="alipayChargeAct" class="com.sys.volunteer.alipay.AlipayChargeAct" method="alipayCharge">
+			<result name="success" type="redirect">${returnUrl}</result>
+			<interceptor-ref name="token" />
+           	<interceptor-ref name="defaultStack" />
+			<result name="invalid.token">/common/error2.jsp</result>
+			<result name="input">/alipayCharge/alipayCharge.jsp</result>
+		</action>
+		<action name="chargeback" class="com.sys.volunteer.alipay.AlipayChargeAct" method="AlipayChargeBack">
+		</action>
+		<action name="alipayNotifyDispose" class="com.sys.volunteer.alipay.AlipayChargeAct" method="alipayNotifyDispose">
+			<result name="notify">/common/notify.jsp</result>
+	    </action>
+	    
+	    <action name="list" class="com.sys.volunteer.alipay.ListAlipayAction" >
+			<result name="listAlipay">/alipayCharge/listAlipay.jsp</result>
+		</action>
+		
+		<action name="doRecharge" class="com.sys.volunteer.alipay.AlipayChargeAct" method="doRecharge">
+		</action>
+	</package>
+</struts>

@@ -1,9 +1,7 @@
 package com.sys.volunteer.common;
 
-import java.util.regex.*;
-
-import com.lowagie.text.Paragraph;
-import com.sun.org.apache.xml.internal.security.keys.content.RetrievalMethod;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 批量考勤用验证提交数据处理类

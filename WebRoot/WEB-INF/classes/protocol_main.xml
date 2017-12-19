@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gamePrococol-config>
+
+	<!-- 包头识别 只读4个字节
+	<packageHeader type="amf">
+		<byte>a</byte>
+		<byte>p</byte>
+		<byte>v</byte>
+		<byte>o</byte>
+	</packageHeader>
+
+	<default javaPackage="com.ages.protocol.po" javaBasePoImport="com.ages.protocol.BasePo"
+	flashPackage="com.ages.protocol.po" flashBasePoImport="com.ages.protocol.BasePo" />
+-->
+
+
+<!-- 配置
+	对应java package:协议
+ -->
+	<setting>
+		<packageHeader type="amf" code="apvo"></packageHeader>
+		<!-- compress 默认压缩方式 -->
+		<defaultCompress>0</defaultCompress>
+		<!-- compressType 默认传输包类型 1是amf 2.是自定义包-->
+		<defaultProtocolType>1</defaultProtocolType>				
+		<java package="com.mprs.protocol.po" BasePoImport="com.mprs.protocol.BasePo" GenerateDir="C:\VO\JAVA\"/>
+		<flash package="com.mprs.protocol.po" BasePoImport="com.mprs.protocol.BasePo" GenerateDir="C:\VO\FLASH\"/>
+		<questionPackageFormat>%</questionPackageFormat>
+		<answerPackageFormat>%_Rp</answerPackageFormat>
+	</setting>
+
+	<!-- 导入包
+	    protocolPfx: 协议号前缀。 （允许值范围： 1 - 4095 ） 
+		subPackageName: 子包名。（日后将变成）
+		configFileName：导入的文件名.xml结尾。
+	-->
+	<!-- <import protocolPfx="1" subPackageName="room" configFileName="protocol_item.xml" /> -->
+
+	<!-- 主配置文件建议全部导入不写任何协议 除了ECHO -->
+	<!-- 协议包设定文件
+	主属性<parse/>
+		protocol：协议号。（允许值范围：1 - 65535）
+		className：协议名。传输包命名
+		springBeanName：绑定Spring指定的服务，必须服务存在
+		comment：包注释
+		direction：
+	发问包字段<q/>
+		fieldType：字段类型，兼容java与flash
+		fieldName：字段命名。
+		comment：字段注释。
+	应答包字段<a/>如果无需应答，可不填任何<a>字段
+		fieldType：字段类型，兼容java与flash
+		fieldName：字段命名。
+		comment：字段注释。		
+	 -->
+
+	<parse protocol="1" className="EchoPo" springBeanName="echoService" methodName="testMethodInvoke" 
+	compress="1" protocolType="1"  comment="Echo测试包">
+		<!-- 发问包 -->
+		<q fieldType="eStr" fieldName="echoStr" comment="测试字符串" />
+		<q fieldType="eInt" fieldName="echoInt" comment="测试数字" />
+		<!-- <q fieldType="eList" fieldName="echoList" listDetailType="com.ages.protocol.po.TestObj" comment="测试数字" />-->
+		<q fieldType="eList" fieldName="echoList" listDetailType="Integer" comment="测试集合整型" />
+		<!-- 应答包 -->
+		<a fieldType="eStr" fieldName="echoStr" comment="测试字符串" />
+		<a fieldType="eInt" fieldName="echoInt" comment="测试数字" />
+		<a fieldType="eList" fieldName="echoList" listDetailType="Integer" comment="测试集合整型" />
+	</parse>
+
+</gamePrococol-config>

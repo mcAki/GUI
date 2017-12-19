@@ -81,4 +81,22 @@ public class FileTool {
 		return Integer.parseInt((String)timerDetailConfigProperties.get(propertyName));
 
 	}
+	
+	/**
+	 * 根据confProperties文件，propertyName属性，获得对应的value
+	 * @param propertyName
+	 * @param confProp
+	 * @return
+	 */
+	public static Object loadConfig(String propertyName,String confProperties){
+	 	Properties timerDetailConfigProperties = new Properties(); 
+        InputStream in = FileTool.class.getResourceAsStream(confProperties); 
+        try { 
+        	timerDetailConfigProperties.load(in); 
+        } catch (IOException e) { 
+            e.printStackTrace(); 
+        }
+		return timerDetailConfigProperties.get(propertyName);
+
+	}
 }

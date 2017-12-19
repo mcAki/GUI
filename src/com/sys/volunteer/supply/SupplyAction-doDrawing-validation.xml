@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//OpenSymphony Group//XWork Validator 1.0.2//EN" "http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+
+<validators>
+
+
+	<field name="useraccountdealdetail.voucherCode">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>凭证号不能为空</message>
+		</field-validator>
+	</field>
+
+	<field name="recharge">
+		<field-validator type="required">
+			<message>划拨金额不能为空</message>
+		</field-validator>
+		<field-validator type="double">
+			<param name="min">1</param>
+			<message>填写划拨金额</message>
+		</field-validator>
+		
+	</field>
+	
+	<field name="useraccountdealdetail.voucherType">
+		<field-validator type="int">	
+			<param name="min">1</param>
+			<param name="max">3</param>
+			<message>请选择凭证类型</message>
+		</field-validator>
+		
+	</field>
+</validators>

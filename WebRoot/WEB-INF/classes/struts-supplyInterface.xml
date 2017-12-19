@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="supplyInterface" namespace="/supplyInterface" extends="struts-core">
+		
+		<!-- users/list!listUserForSelectManag.do -->
+		<action name="page" class="com.sys.volunteer.supplyinterface.SupplyInterfaceAction" >
+			<result name="do">/supplyinterface/interface.jsp</result>
+			<result name="update">/supplyinterface/updateInterface.jsp</result>
+		</action>
+		
+		<action name="doAdd" class="com.sys.volunteer.supplyinterface.SupplyInterfaceAction" method="doAdd">
+			<!--<interceptor-ref name="token"/>
+			<result name="invalid.token">/user/user.jsp</result>			
+			--><result name="success"></result>
+			<result name="input">/supplyinterface/interface.jsp</result>
+		</action>
+		
+		<action name="doAdds" class="com.sys.volunteer.supplyinterface.SupplyInterfaceAction" method="doAdds">
+			<!--<interceptor-ref name="token"/>
+			<result name="invalid.token">/user/user.jsp</result>			
+			--><result name="success"></result>
+			<result name="input">/supplyinterface/interface.jsp</result>
+		</action>
+		
+		<action name="goodsList" class="com.sys.volunteer.supplyinterface.SupplyInterfaceAction" method="goodsList">
+		</action>
+		
+		<action name="setSupplyUsergroup" class="com.sys.volunteer.supplyinterface.SupplyInterfaceAction" >
+		     <result name="addSupplyUsergroup" type="redirect">list!setSupplyUsergroup.do?usergroupId=${usergroupId} </result>
+		</action>
+		
+		<action name="doUpdate" class="com.sys.volunteer.supplyinterface.SupplyInterfaceAction" method="doUpdate">
+			<!--<interceptor-ref name="token"/>
+			<result name="invalid.token">/user/user.jsp</result>			
+			--><result name="success"></result>
+			<result name="input">/supplyinterface/updateInterface.jsp</result>
+		</action>
+		
+		<action name="doDel" class="com.sys.volunteer.supplyinterface.SupplyInterfaceAction" method="doDel">
+			<!--<interceptor-ref name="token"/>
+			<result name="invalid.token">/user/user.jsp</result>			
+			--><result name="success"></result>
+			<result name="input">/supplyinterface/listInterface.jsp</result>
+		</action>
+		
+		<action name="doRecover" class="com.sys.volunteer.supplyinterface.SupplyInterfaceAction" method="doRecover">
+			<!--<interceptor-ref name="token"/>
+			<result name="invalid.token">/user/user.jsp</result>			
+			--><result name="success"></result>
+			<result name="input">/supplyinterface/listInterface.jsp</result>
+		</action>
+		
+		<action name="list" class="com.sys.volunteer.supplyinterface.ListInterfacetypeAction" >
+			<result name="success">/supplyinterface/listInterface.jsp</result>
+			<result name="setSupplyUsergroup">/supplyinterface/modifySupplyUsergroupPage.jsp </result>
+		</action>	
+	</package>	
+	
+	
+</struts>

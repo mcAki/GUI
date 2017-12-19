@@ -19,6 +19,7 @@ package org.apache.commons.beanutils.converters;
 
 
 import java.sql.Timestamp;
+
 import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.beanutils.Converter;
 

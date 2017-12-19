@@ -87,15 +87,19 @@ window.attachEvent("onload", correctPNG);
                         <table width="500" height="143" border="0" align="left" cellPadding="0" cellSpacing="0" style="text-align:left;">
                           <tr>
                             <td width="75" height="50" >用　户：&nbsp;&nbsp;</td>
-                            <td height="38" colspan="2" ><input name="user.userName" style="width:153px;" class="editbox4" value="" size="20"></td>
+                            <td height="38" colspan="2" ><input name="user.loginName" style="width:153px;" class="editbox4" value="" size="20"></td>
                           </tr>
                           <tr>
                             <td height="50" >密　码：&nbsp;&nbsp;</td>
-                            <td height="35" colspan="2" ><input name="user.passWord" style="width:153px;" class="editbox4" type="password" size="20">&nbsp;&nbsp;<img src="images/luck.gif" width="19" height="18"> </td>
+                            <td height="35" colspan="2" ><input name="user.userPassword" style="width:153px;" class="editbox4" type="password" size="20">&nbsp;&nbsp;<img src="images/luck.gif" width="19" height="18"> </td>
                           </tr>
                           <tr>
                             <td height="50" >验证码：&nbsp;&nbsp;</td>
                             <td height="35" colspan="2" style="line-height:35px;"><input name="verifycode" id="inputVerifyCode" type=text value="" maxLength=5 style="float:left;width:69px; height:24px;" onfocus="refreshVerifyCode();"><div style="float:left;">&nbsp;&nbsp;</div><img id="idVerifyCode" style="float:left; cursor:pointer;display: none;" onclick="inputVerifyCode.focus();"/></td>
+                          </tr>
+                          <tr>
+                            <td width="75" height="50" >加密key：&nbsp;&nbsp;</td>
+                            <td height="38" colspan="2" ><input name="keyId" style="width:153px;" class="editbox4" value="" size="20">&nbsp;如没有绑定请填写'000000'</td>
                           </tr>
                           <tr>
                             <td height="50" >&nbsp;</td>

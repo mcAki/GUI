@@ -13,7 +13,7 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-
+	
 	<!-- CharacterEncodingFilter -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
@@ -30,9 +30,10 @@
 	<session-config>
  		<session-timeout>240</session-timeout>
  	</session-config>
+	
 
 	<!-- openSessionInViewFilter 延迟加载-->
-	<!-- <filter>
+	<filter>
 		<filter-name>hibernateFilter</filter-name>
 		<filter-class>
 			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
@@ -40,15 +41,26 @@
 	<filter-mapping>
 		<filter-name>hibernateFilter</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping> -->
-
+	</filter-mapping>
+	
 	<!-- Spring 刷新Introspector防止内存泄露 -->
 	<listener>
 		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
 	</listener>
-	<listener>
-		<listener-class>com.sys.volunteer.baseaction.BaseDataLoader</listener-class>
-	</listener>
+	
+	<!-- displaytag 导出过滤器 -->
+	<filter>  
+      <filter-name>ResponseOverrideFilter</filter-name>  
+      <filter-class>org.displaytag.filter.ResponseOverrideFilter</filter-class>  
+  	</filter>
+  	<filter-mapping>  
+      <filter-name>ResponseOverrideFilter</filter-name>  
+      <url-pattern>*.do</url-pattern>  
+	</filter-mapping>  
+	<filter-mapping>  
+      <filter-name>ResponseOverrideFilter</filter-name>  
+      <url-pattern>*.jsp</url-pattern>  
+	</filter-mapping>
 
 	<!-- struts2 config -->
 	<filter>
@@ -59,7 +71,6 @@
 		<filter-name>struts2</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
 
 	<!-- log4j config -->
 	<context-param>
@@ -79,7 +90,7 @@
 	<listener>
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
 	</listener>
-
+	
 	<!-- 添加rar,iso等的mime-type映射    避免在浏览器里直接打开 -->
 	<mime-mapping>
 		<extension>mht</extension>
@@ -105,15 +116,5 @@
 		<extension>ico</extension>
 		<mime-type>image/x-icon</mime-type>
 	</mime-mapping>
-	
-	<!-- JFreeChart -->  
-    <servlet>  
-        <servlet-name>DisplayChart</servlet-name>  
-        <servlet-class>org.jfree.chart.servlet.DisplayChart</servlet-class>  
-    </servlet>  
-    <servlet-mapping>  
-        <servlet-name>DisplayChart</servlet-name>  
-        <url-pattern>/DisplayChart</url-pattern>  
-    </servlet-mapping>  
-	
+
 </web-app>

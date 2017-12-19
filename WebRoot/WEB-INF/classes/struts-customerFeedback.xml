@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	
+	<package name="customerFeedback" namespace="/customerFeedback" extends="struts-core">
+		<action name="page" class="com.sys.volunteer.customer.CustomerFeedbackAct" >
+			<result name="saveCfbPage">/customer/addCustomerFeedback.jsp</result>
+		</action>
+		<action name="savecfb" class="com.sys.volunteer.customer.CustomerFeedbackAct" method="savecfb"></action>
+		
+		<action name="findAll" class="com.sys.volunteer.customer.CustomerFeedbackAct" method="findAll">
+		   <result name="success">/customer/customerFeedbackList.jsp </result>
+		</action>
+		<action name="findOneById" class="com.sys.volunteer.customer.CustomerFeedbackAct" method="findOneById">
+		   <result name="success">/customer/customerFeedbackOne.jsp </result>
+		</action>
+		
+		<action name="delCfb" class="com.sys.volunteer.customer.CustomerFeedbackAct" method="delCfb">
+		   <result name="success" type="redirect">findAll.do</result>
+		</action>
+	</package>
+</struts>

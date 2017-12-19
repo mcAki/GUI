@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="profiler.settings.instrument.empty.methods">true</entry>
+<entry key="ProfilerCPUSettings_profile_runnables">true</entry>
+<entry key="ProfilerCPUSettings_filter_type">2</entry>
+<entry key="ProfilerMemorySettings_track_every">10</entry>
+<entry key="ProfilerMemorySettings_mode">4</entry>
+<entry key="ProfilerCPUSettings_root_classes">com.mprs.core.**
+com.mprs.netty.handler.**
+com.mprs.netty.server.**
+com.mprs.protocol.**
+com.mprs.util.**
+com.sys.volunteer.aop.**
+com.sys.volunteer.authority.**
+com.sys.volunteer.baseaction.**
+com.sys.volunteer.cardLib.**
+com.sys.volunteer.common.**
+com.sys.volunteer.dao.**
+com.sys.volunteer.exception.**
+com.sys.volunteer.goods.**
+com.sys.volunteer.http.**
+com.sys.volunteer.interceptor.**
+com.sys.volunteer.json.**
+com.sys.volunteer.ka.**
+com.sys.volunteer.liandong.**
+com.sys.volunteer.login.**
+com.sys.volunteer.operationLog.**
+com.sys.volunteer.order.**
+com.sys.volunteer.otp.**
+com.sys.volunteer.pagemodel.**
+com.sys.volunteer.permission.**
+com.sys.volunteer.pojo.**
+com.sys.volunteer.spplyscorelog.**
+com.sys.volunteer.springContext.**
+com.sys.volunteer.statistics.**
+com.sys.volunteer.supply.**
+com.sys.volunteer.system.**
+com.sys.volunteer.terminalAirDepositResponseNew.**
+com.sys.volunteer.useraccount.**
+com.sys.volunteer.userlevel.**
+com.sys.volunteer.users.**
+com.sys.volunteer.vo.**
+com.sys.volunteer.ws.client.**
+org.apache.commons.beanutils.converters.**
+test.**
+</entry>
+<entry key="ProfilerCPUSettings_filter_value">com.mprs.core.*,
+com.mprs.netty.handler.*,
+com.mprs.netty.server.*,
+com.mprs.protocol.*,
+com.mprs.util.*,
+com.sys.volunteer.aop.*,
+com.sys.volunteer.authority.*,
+com.sys.volunteer.baseaction.*,
+com.sys.volunteer.cardLib.*,
+com.sys.volunteer.common.*,
+com.sys.volunteer.dao.*,
+com.sys.volunteer.exception.*,
+com.sys.volunteer.goods.*,
+com.sys.volunteer.http.*,
+com.sys.volunteer.interceptor.*,
+com.sys.volunteer.json.*,
+com.sys.volunteer.ka.*,
+com.sys.volunteer.liandong.*,
+com.sys.volunteer.login.*,
+com.sys.volunteer.operationLog.*,
+com.sys.volunteer.order.*,
+com.sys.volunteer.otp.*,
+com.sys.volunteer.pagemodel.*,
+com.sys.volunteer.permission.*,
+com.sys.volunteer.pojo.*,
+com.sys.volunteer.spplyscorelog.*,
+com.sys.volunteer.springContext.*,
+com.sys.volunteer.statistics.*,
+com.sys.volunteer.supply.*,
+com.sys.volunteer.system.*,
+com.sys.volunteer.terminalAirDepositResponseNew.*,
+com.sys.volunteer.useraccount.*,
+com.sys.volunteer.userlevel.*,
+com.sys.volunteer.users.*,
+com.sys.volunteer.vo.*,
+com.sys.volunteer.ws.client.*,
+org.apache.commons.beanutils.converters.*,
+test.*</entry>
+<entry key="profiler.settings.istrument.getter.setter.methods">true</entry>
+<entry key="myeclipse.profiling.mode">0</entry>
+<entry key="ProfilerMemorySettings_stacktraces">-1</entry>
+</properties>

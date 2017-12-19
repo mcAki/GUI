@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="games" namespace="/games" extends="struts-core">
+		
+		<action name="add" class="com.sys.volunteer.games.GamesAction" method="doAdd">
+			<result name="test">/games/purch.jsp</result>
+			<result name="input">/games/purch.jsp</result>
+		</action>
+
+	    <action name="gameList" class="com.sys.volunteer.games.GamesAction" method="doList">
+			<result name="gamesList">/games/gamesList.jsp</result>	
+		</action>
+		
+	</package>	
+	
+</struts>

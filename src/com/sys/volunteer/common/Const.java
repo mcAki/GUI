@@ -1,12 +1,5 @@
 package com.sys.volunteer.common;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.struts2.dispatcher.StaticContentLoader;
-import org.omg.CORBA.PUBLIC_MEMBER;
-
-import com.sun.org.apache.bcel.internal.generic.NEW;
 /**
  * 常量类
  * @author Administrator
@@ -30,13 +23,17 @@ public class Const {
 	 */
 	public final static String USER_MENUTREE_SESSION_KEY="menuTree";
 	/**
-	 * 广播表session标记
+	 * 用户对应的权限Session标记
 	 */
-	public final static String BROADCAST_SESSION_KEY="broadcast";
+	public final static String USER_PERMISSION_SESSION_KEY="permissions";
 	/**
-	 * 服务器IDsession标记
+	 * 权限session标记
 	 */
-	public final static String SERVERID_SESSION_KEY="server";
+	public final static String PERMISSION_KEY = "permissionPageListSession";
+	/**
+	 * 供货商对应的主菜单Session标记
+	 */
+	public final static String SUPPLYMAP_SESSION_KEY="supplyMap";
 	/**
 	 * 记录验证码使用的Session标记
 	 */
@@ -58,63 +55,7 @@ public class Const {
 	public final static String SMS_SMID_KEY="SMS_SMID_KEY";
 
 	public static final int BUFFER_SIZE = 16 * 1024;
-	
-	public final static int MISSION_TYPE_SCIENCE=1;
-	public final static int MISSION_TYPE_HEALTH=2;
-	public final static int MISSION_TYPE_STUDY=3;
-	public final static int MISSION_TYPE_ETIQUETTE=4;
-	public final static int MISSION_TYPE_COMMONWEAL=5;
-	public final static int MISSION_TYPE_HONESTY=6;
-	public final static int MISSION_TYPE_ENVIRONMENTALPROTECTION=7;
-	/**
-	 * (亚运)赛会
-	 */
-	public final static int MISSION_TYPE_ASIANGAMESCOMPITITION=8;
-	/**
-	 * (亚残)赛会
-	 */
-	public final static int MISSION_TYPE_ASIANPARAGAMESCOMPITITION=9;
-	/**
-	 * (亚运)城市文明
-	 */
-	public final static int MISSION_TYPE_ASIANGAMESCITYCULTURE=10;
-	/**
-	 * (亚运)城市站点
-	 */
-	public final static int MISSION_TYPE_ASIANGAMESCITYSITE=11;
-	/**
-	 * (亚残)城市文明
-	 */
-	public final static int MISSION_TYPE_ASIANPARAGAMESCITYCULTURE=12;
-	/**
-	 * (亚残)城市站点
-	 */
-	public final static int MISSION_TYPE_ASIANPARAGAMESCITYSITE=13;
-	
-	public final static int MISSIONVERIFICATION_PERMISSIBLE_PASS=1;
-	public final static int MISSIONVERIFICATION_PERMISSIBLE_NOTPASS=2;
-	public final static int MISSIONVERIFICATION_PERMISSIBLE_FORBIDDEN=1;
-	/**
-	 * 考勤时间保存成功的提示
-	 */
-	public final static int MISSION_SERVICELOG_CHECK_PASS=0;
-	/**
-	 * 考勤时间检查超过特定时长的提示
-	 */
-	public final static int MISSION_SERVICELOG_CHECK_LONG=1;
 
-	/**
-	 * 考勤状态错误
-	 */
-	public final static int MISSION_SERVICELOG_CHECK_STATE_WORNG=2;
-	
-	
-	public final static String[] MISSION_TEAM_LEVEL_NAMES=new String[]{"子队","大队","中队","小队"};
-	
-	public final static String[] MISSION_TEAM_TYPE_NAMES=new String[]{"无效","一般","临时小队"};
-	
-	public final static String[] MISSION_VERIFICATION_PERMISSIBLE_NAMES=new String[]{"其他","审批通过","审批不通过","直接禁止本项目"};
-	
 	
 	/**
 	 * 团队建立岗位对接表--表头对照
@@ -122,19 +63,6 @@ public class Const {
 	public final static String[] EXCEL_MISSIONPOSITION_HEADER=new String[]{"ID","总序号","业务口","岗位名称","姓名","性别","证件类型","证件号码",
 	                                                                       "来源学校","联系电话","职务\n(可下拉)","所属中队编号","所属小队编号",
 	                                                                       "大队代码\n(一个场馆一个大队)","中队代码\n(根据中队编号自动生成)","小队代码\n(根据小队编号自动生成)"};
-	
-	/**
-	 * 短信邀请
-	 */
-	public final static int USER_SELECTION_SMS = 0;
-	/**
-	 * 网上报名
-	 */
-	public final static int USER_SELECTION_ONLINE = 1;
-	/**
-	 * 协议直接分配
-	 */
-	public final static int USER_SELECTION_PROTOCOL = 2;
 	
 	public final static String[] EXCEL_USERS_HEADER=new String[]{"打印PDF确认表编号", "注册编号", "中文姓",	"中文名",	"姓"	,"名",
 		"出生国家/地区",	"证件所属国家/地区",	"性别", "出生日期",	"电子邮箱地址",	"曾用姓"	,"曾用名","惯用姓", "惯用名", "民族",	"身高(cm)",	
@@ -145,83 +73,6 @@ public class Const {
 		"申请人移动电话",	"申请人固定电话",	"其他联系人姓名",	"其他联系人移动电话",	"语言",	"擅长外语", "来源单位",	"亚组委招募部门",
 		"普通/专业志愿者","PDF确认表是否确认", "状态", "职位",	"场馆",	"业务口",	"是否上传照片"};
 
-	/**
-	 * 暂无识别(主要用于登陆时候作自动识别标记)
-	 */
-	public final static int USER_IDCARD_UNKNOW = 255;	
-	/**
-	 * 护照
-	 */
-	public final static int USER_IDCARD_PAS = 0;
-	/**
-	 * 中国居民身份证
-	 */
-	public final static int USER_IDCARD_CID = 1;
-
-	/**
-	 * 中国人民解放军军官证或士兵证
-	 */
-	public final static int USER_IDCARD_JGZ = 2;
-	
-	/**
-	 * 中国武警证件
-	 */
-	public final static int USER_IDCARD_WJZ = 3;
-	/**
-	 * 台湾居民来往大陆通行证
-	 */
-	public final static int USER_IDCARD_TWT = 4;
-	/**
-	 * 港、澳居民来往内地通行证
-	 */
-	public final static int USER_IDCARD_GAT = 5;
-	
-	
-	
-	/**
-	 * 公安现役警官证件或士兵证（边防系统）
-	 */
-	public final static int USER_IDCARD_GAB = 6;
-	/**
-	 * 公安现役警官证件或士兵证（警卫系统）
-	 */
-	public final static int USER_IDCARD_GAJ = 7;	
-	/**
-	 * 公安现役警官证件或士兵证（消防系统）
-	 */
-	public final static int USER_IDCARD_GAX = 8;
-
-
-	
-	/**
-	 * 删除标记--未删除
-	 */
-	public final static int USER_IS_NOT_DELETE=0;
-	
-	/**
-	 * 删除标记--已删除
-	 */
-	public final static int USER_IS_DELETE=1;
-	
-	
-	/**
-	 * 城市志愿者
-	 */
-	public final static String USER_COMEFROM_CITY="1";
-	/**
-	 * 赛会志愿者
-	 */
-	public final static String USER_COMEFROM_VENUN="2";
-	/**
-	 * 赛会与城市志愿者
-	 */
-	public final static String USER_COMEFROM_VENUN_AND_CITY="3";
-	/**
-	 * 未通过安检的志愿者
-	 */
-	public final static String USER_UNAPPROVESECURITYCHECK="0";
-	 
-	
 	/**
 	 * 性别--男
 	 */
@@ -235,60 +86,6 @@ public class Const {
 	 */
 	public final static int USER_GENDER_UNKNOWN=0;
 	
-	
-	/**
-	 * 用户状态--志愿者
-	 */
-	public final static int USER_STATE_VOLUNTEER=1;
-	/**
-	 * 用户状态--拟录用
-	 */
-	public final static int USER_STATE_PLAN_TO_HIRE=2;
-	/**
-	 * 用户状态--待录用
-	 */
-	public final static int USER_STATE_TREATS_HIRE=3;
-	/**
-	 * 用户状态--已录用
-	 */
-	public final static int USER_STATE_HIRE=4;
-	
-	
-	
-	/**
-	 * 用户状态--启用
-	 */
-	public final static int USER_STATE_ENABLED=1;
-
-	/**
-	 * 用户状态--停用
-	 */
-	public final static int USER_STATE_DISABLED=2;
-	
-	/**
-	 * 队伍类型--无效
-	 */
-	public final static int MISSION_TEAM_TYPE_INVALID = 0;
-	
-	/**
-	 * 队伍类型--系统生成小队号
-	 */
-	public final static int MISSION_TEAM_TYPE_AUTO_TEAM = 1;
-	
-	/**
-	 * 队伍类型--临时加班小队
-	 */
-	public final static int MISSION_TEAM_TYPE_TEMPORARY_TEAM =2;
-	
-	/**
-	 * mission_team 队伍允许加入
-	 */
-	public final static int MISSION_TEAM_IS_ALLOW_JOIN = 0;
-	/**
-	 * mission_team 队伍不允许加入
-	 */
-	public final static int MISSION_TEAM_IS_NOT_ALLOW_JOIN =1;
-	
 	/**
 	 * Log4J里面用的标记头
 	 * @author Administrator
@@ -297,87 +94,6 @@ public class Const {
 	public static class LogConst{
 		public final static String USERLOGIN = "[USERLOGIN]: ";
 		public final static String ATTENDANCE_POS = "[ATTENDANCE_POS]: ";
-	}
-	
-	/**
-	 * MissionPersonal考勤资格
-	 * @author Administrator
-	 *
-	 */
-	public static class MissionPersonal{
-		/**
-		 * 不允许考勤
-		 */
-		public final static int NORMAL_PERSON=0;
-		/**
-		 * 允许考勤
-		 */
-		public final static int IS_CHECK_ON_PERSON=1;
-		/**
-		 * 允许提交
-		 */
-		public final static int IS_COMMIT=255;
-		/**
-		 * 不确定
-		 */
-		public final static int  SELECTION_INDEFINITE=0;
-		/**
-		 * 已录用
-		 */
-		public final static int  SELECTION_EMPLOYED=1;
-		/**
-		 * 未录用
-		 */
-		public final static int  SELECTION_UNEMPLOYED=2;
-		/**
-		 * 待志愿者确认
-		 */
-		public final static int  SELECTION_WAITING=3;//
-		/**
-		 * 志愿者确认
-		 */
-		public final static int  SELECTION_SURE=4;//
-		/**
-		 * 志愿者拒绝
-		 */
-		public final static int  SELECTION_REJECT=5;//
-		
-		/**
-		 * 已结项
-		 */
-		public final static int  SELECTION_FINISHED=100;//
-		/**
-		 * 志愿者退出
-		 */
-		public final static int  SELECTION_QUIT=255;//
-		/**
-		 * 志愿者被删除
-		 */
-		public final static int  SELECTION_DELETED=256;//
-		
-		public final static int RECRUIT_TYPE_SMS=0;
-	}
-	
-	/**
-	 * 队伍等级
-	 * @author Administrator
-	 *
-	 */
-	public static class MissionTeamLevel{
-		/**
-		 * 大队等级
-		 */
-		public final static int LV_GROUP=1;
-		
-		/**
-		 * 中队等级
-		 */
-		public final static int LV_LOCHUS=2;
-		
-		/**
-		 * 小队等级
-		 */
-		public final static int LV_TEAM=3;
 	}
 
 	/**
@@ -443,50 +159,6 @@ public class Const {
 	}
 	
 	/**
-	 * 任务职位
-	 * @author Administrator
-	 *
-	 */
-	public class MissionPosition{
-		/**
-		 * 未确定
-		 */
-		public final static int UNKNOWN=1;
-		/**
-		 * 负责人
-		 */
-		public final static int MANAGER=2;
-		/**
-		 * 考勤员
-		 */
-		public final static int TIMEKEEPER=3;
-		/**
-		 * 队员
-		 */
-		public final static int MEMBER=10;
-		/**
-		 * 小队长
-		 */
-		public final static int SQUAD_LEADER=11;
-		/**
-		 * 副中队长
-		 */
-		public final static int DEPUTY_LOCHUS_LEADER=12;
-		/**
-		 * 中队长
-		 */
-		public final static int LOCHUS_LEADER=13;
-		/**
-		 * 副大队长
-		 */
-		public final static int DEPUTY_GROUP_LEADER=14;
-		/**
-		 * 大队长
-		 */
-		public final static int GROUP_LEADER=15;
-	}
-	
-	/**
 	 * 读写权限
 	 * @author Administrator
 	 *
@@ -527,77 +199,393 @@ public class Const {
 	}
 	
 	/**
-	 * 
-	 * @author Administrator
+	 * 订单状态
+	 * @author admin
 	 *
 	 */
-	public class UserGroupConst{
+	public class MainOrderState{
 		/**
-		 * 正式志愿者
+		 * 申请处理
 		 */
-		public final static int USERSGROUP_VOLUNTEER=100;
+		public final static int APPLY_PROCESS=0;
 		/**
-		 * 超级管理员
+		 * 处理成功
 		 */
-		public final static int USERSGROUP_ADMINISTRATOR=1;
+		public final static int PROCESS_SUCCESS=1;
 		/**
-		 * 管理员
+		 * 处理失败
 		 */
-		public final static int USERSGROUP_MANAGER=2;
+		public final static int PROCESS_FAILED=2;
 		/**
-		 * 市级管理员
+		 * 处理中
 		 */
-		public final static int USERSGROUP_CITY_MANAGER=11;
+		public final static int PROCESSING=3;
 		/**
-		 * 区级管理员
+		 * 已处理
 		 */
-		public final static int USERSGROUP_DISTRICT_MANAGER=12;
+		public final static int PROCESSED=4;
 		/**
-		 * 街道管理员
+		 * 线程执行中
 		 */
-		public final static int USERSGROUP_AVENUE_MANAGER=13;
+		public final static int THREAD_EXECUTING=5;
 		/**
-		 * 话务员
+		 * 用户申请取消
 		 */
-		public final static int USERSGROUP_CUSTOMER_SERVICE=20;
+		public final static int USER_CANCEL_APPLY=253;
 		/**
-		 * 申请中志愿者
+		 * 用户取消处理中
 		 */
-		public final static int USERSGROUP_APPLYING_VOLUNTEER=91;
+		public final static int USER_CANCEL_PROCESSING=254;
 		/**
-		 * 待录用志愿者
+		 * 用户取消
 		 */
-		public final static int USERSGROUP_WAITING_VERIFY_VOLUNTEER=92;
-		/**
-		 * 已审核志愿者
-		 */
-		public final static int USERSGROUP_VERIFIED_VOLUNTEER=93;
-		/**
-		 * 荣誉志愿者
-		 */
-		public final static int USERSGROUP_HONOR_VOLUNTEER=110;
-		
+		public final static int USER_CANCEL=255;
 	}
 	
 	/**
-	 * 考勤请假旷工情况
+	 * 订单冲正状态
+	 * @author Administrator
+	 *
 	 */
-	public class ServiceLog{
+	public class OrderReversalState{
 		/**
-		 * 无
+		 * 未冲正
+		 */
+		public final static int NON_REVERSAL=-1;
+		/**
+		 * 申请处理
+		 */
+		public final static int APPLY_REVERSAL=-2;
+		/**
+		 * 处理中
+		 */
+		public final static int PROCESSING=0;
+		/**
+		 * 处理成功
+		 */
+		public final static int PROCESS_SUCCESS=1;
+		/**
+		 * 处理失败
+		 */
+		public final static int PROCESS_FAILED=2;
+		/**
+		 * 已冲正
+		 */
+		public final static int PROCESSED=3;
+		/**
+		 * 线程执行中
+		 */
+		public final static int THREAD_EXECUTING=5;
+	}
+	
+	public class BatchOrderState{
+		/**
+		 * 待确认
+		 */
+		public final static int WAIT_COMMIT=0;
+		/**
+		 * 未开始
+		 */
+		public final static int NONE_PROCESS=1;
+		/**
+		 * 处理中
+		 */
+		public final static int PROCESSING=2;
+		/**
+		 * 暂停
+		 */
+		public final static int PAUSE=3;
+		/**
+		 * 停止
+		 */
+		public final static int STOP=4;
+		/**
+		 * 已完成
+		 */
+		public final static int PROCESSED=255;
+	}
+	
+	/**
+	 * 操作记录类型
+	 * @author admin
+	 *
+	 */
+	public class OperationLogType{
+		/**
+		 * 未知
+		 */
+		public final static int UNKNOWN=0;
+		/**
+		 * 空中充值
+		 */
+		public final static int MOBILE_RECHARGE=1;
+		/**
+		 * 卡密
+		 */
+		public final static int CARDLIB_BUY=2;
+		/**
+		 * 冲正
+		 */
+		public final static int REVERSAL=3;
+		/**
+		 * 强制订单成功
+		 */
+		public final static int DEAL_SUCCESS=4;
+		/**
+		 * 用户登陆
+		 */
+		public final static int LOGIN = 5;
+		/**
+		 * 修改密码
+		 */
+		public final static int MODIFY_PWD = 6;
+		/**
+		 * 重置密码
+		 */
+		public final static int RESET_PWD = 7;
+		/**
+		 * 修改电话号码
+		 */
+		public final static int MODIFY_MOBILE = 8;
+		/**
+		 * 用户取消
+		 */
+		public final static int USER_CANCEL=255;
+	}
+	
+	/**
+	 * 操作记录结果
+	 * @author admin
+	 *
+	 */
+	public class OperationLogResult{
+		/**
+		 * 没有处理结果
+		 */
+		public final static int NONE_PROCESS=-1;
+		/**
+		 * 处理中
+		 */
+		public final static int PROCESSING=0;
+		/**
+		 * 成功
+		 */
+		public final static int SUCCESS=1;
+		/**
+		 * 失败
+		 */
+		public final static int FAILED=2;
+	}
+	
+	public class Usergroup{
+		/**
+		 * 超级管理员
+		 */
+		public final static int ADMIN=1;
+		/**
+		 * 普通管理员
+		 */
+		public final static int STAFF=2;
+		/**
+		 * 供货商
+		 */
+		public final static int SUPPLY=3;
+		/**
+		 * 一级商户
+		 */
+		public final static int GRADE_ONE=4;
+		/**
+		 * 二级商户
+		 */
+		public final static int GRADE_TWO=5;
+		/**
+		 * 二级商户(批量用)
+		 */
+		public final static int GRADE_TWO_2=6;
+	}
+	
+	public class GroupType{
+		/**
+		 * 超级管理员
+		 */
+		public final static int ADMIN=1;
+		/**
+		 * 普通管理员
+		 */
+		public final static int STAFF=2;
+		/**
+		 * 供货商
+		 */
+		public final static int SUPPLY=3;
+		/**
+		 * 一级商户
+		 */
+		public final static int GRADE_ONE=4;
+		/**
+		 * 二级商户
+		 */
+		public final static int GRADE_TWO=5;
+		/**
+		 * 二级商户(批量用)
+		 */
+		public final static int GRADE_TWO_2=6;
+	}
+	
+	public class GoodsFlag{
+		/**
+		 * 空
 		 */
 		public final static int NONE=0;
 		/**
-		 * 请假
+		 * 移动空中充值
 		 */
-		public final static int ASKOFF=1;
+		public final static int MOBILE_RECHARGE=10;
 		/**
-		 * 旷工
+		 * 电信空中充值
 		 */
-		public final static int NOATTENDANCE=2;
+		public final static int TELECOM_RECHARGE=11;
+		/**
+		 * 联通空中充值
+		 */
+		public final static int UNICOM_RECHARGE=12;
+		/**
+		 * 游戏直充
+		 */
+		public final static int GAME_RECHARGE=13;
+		/**
+		 * 游戏点卡
+		 */
+		public final static int GAME_CARD=20;
+		/**
+		 * 电信单一缴费
+		 */
+		public final static int TELECOM_SINGLE_RECHARGE=30;
+		/**
+		 * 电信宽带缴费
+		 */
+		public final static int TELECOM_BOARDBAND_RECHARGE=31;
+		/**
+		 * 电信综合缴费
+		 */
+		public final static int TELECOM_UNION_RECHARGE=32;
 	}
 	
-	public class MissionType{
+	public class UseraccountResult{
+		//返回1表示空账户,返回0表示充值成功,2表示充值失败,3表示密码错误
+		public final static int SUCCESS=0;
 		
+		public final static int NULL=1;
+		
+		public final static int FAIL=2;
+		
+		public final static int WRONG_PASSWORD=3;
+	}
+	
+	public class UseraccountdealdetailFlag{
+		/**
+		 * 商户充值
+		 */
+		public final static int USER_DEPOSIT = 2;
+		/**
+		 * 划款
+		 */
+		public final static int REMIT = 1;
+		/**
+		 * 消费
+		 */
+		public final static int PURCHASE = 3;
+		/**
+		 * 冲正
+		 */
+		public final static int REVERSAL = 4;
+		/**
+		 * 提款
+		 */
+		public final static int DRAWING = 5;
+		/**
+		 * 被提款
+		 */
+		public final static int DRAWN = 6;
+		/**
+		 * 想供货商充值
+		 */
+		public final static int SUPPLY_DEPOSIT = 7;
+		/**
+		 * 提取佣金
+		 */
+		public final static int DRAW_COMMISSION = 8;
+		/**
+		 * 扣手续费
+		 */
+		public final static int CROSS_CLAIM = 9;
+		/**
+		 * 加手续费
+		 */
+		public final static int PLUS_CLAIM = 10;
+
+		/**
+		 * 埋数
+		 */
+		public final static int CHECK_OUT = 100;
+		/**
+		 * 用户取消
+		 */
+		public final static int USER_CANCEL=255;
+		
+	}
+	
+	public class UseraccountdealdetailLogFor{
+		/**
+		 * 供货商
+		 */
+		public final static int FOR_SUPPLY = 2;
+		/**
+		 * 商户
+		 */
+		public final static int FOR_USER = 1;
+	}
+	
+	public class reverseResult{
+		/**
+		 * 处理中
+		 */
+		public final static int PROCESSING = 0; 
+		/**
+		 * 失败
+		 */
+		public final static int FAILED = -1;
+		/**
+		 * 成功
+		 */
+		public final static int SUCCESS = 1;
+		/**
+		 * 联系客服
+		 */
+		public final static int CONTACT_US = 2;
+		/**
+		 * 成功
+		 */
+		public final static int PROCESSED = 3;
+	}
+	
+	/**
+	 * 用户标记
+	 * @author admin
+	 *
+	 */
+	public class UserFlag{
+		/**
+		 * 正常
+		 */
+		public final static int NORMAL = 0;
+		/**
+		 * 冻结
+		 */
+		public final static int FREEZE = 1;
+		/**
+		 * 禁用
+		 */
+		public final static int FORBIDDEN = 2;
+
 	}
 }

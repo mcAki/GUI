@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="useraccountdealdetail" namespace="/useraccountdealdetail" extends="struts-core">
+		<action name="list" class="com.sys.volunteer.useraccountdealdetail.ListUserAccountDealdetailAction" >
+			<result name="listUdForSupply">/useraccountdealdetail/listUdForSupply.jsp</result>
+			<result name="listUdForUser">/useraccountdealdetail/listUdForUser.jsp</result>
+		</action>
+		
+		<action name="batchAddCheckOut" class="com.sys.volunteer.useraccountdealdetail.ListUserAccountDealdetailAction" method="batchAddCheckOut">
+			<result name="success"></result>
+		</action>
+		<action name="adviceOfSettlementForUser" class="com.sys.volunteer.useraccountdealdetail.ListUserAccountDealdetailAction" method="adviceOfSettlementForUser">
+			<result name="success">/useraccountdealdetail/adviceOfSettlementForUser.jsp</result>
+		</action>
+		<action name="adviceOfSettlementForSupply" class="com.sys.volunteer.useraccountdealdetail.ListUserAccountDealdetailAction" method="adviceOfSettlementForSupply">
+			<result name="success">/useraccountdealdetail/adviceOfSettlementForSupply.jsp</result>
+		</action>
+		
+	</package>	
+	
+</struts>

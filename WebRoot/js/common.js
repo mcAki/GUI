@@ -66,11 +66,56 @@ function MM_swapImage() { // v3.0
    if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
 }
 
+//window.open('page.html','newwindow','height=100,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no')
+//脚本运行后，page.html将在新窗体newwindow中打开，宽为100，高为400，距屏顶0象素，屏左0象素，无工具条，无菜单条，无滚动条，不可调整大小，无地址栏，无状态栏。请对照
+function ezModal(url,width,height,paramsObj,isResizable,isScroll,isCenter,isStatus){
+	// 为了处理缓存加入随机时间
+	if(url.lastIndexOf('?')<0){
+		url += '?';	
+	}
+	url += "&date=" + new Date().getTime();
+
+	// 弹出参数
+	var features = "alwaysRaised=yes,toolbar=no,menubar=no,";
+	    
+	if(width>0){
+		features += "width="+ width +",";
+	}else{
+		features += "width=500,";
+	}
+	
+	if(height>0){
+		features += "height=" + height + ",";
+	}else{
+		features += "height=500,";
+	}
+	
+	if(isResizable==true){
+		features += 'resizable=yes,';		
+	}else{
+		features += 'resizable=no,';
+	}
+
+	if(isScroll!=false){
+		features += 'scroll=yes,';		
+	}else{
+		features += 'scroll=no,';
+	}
+
+	if(isStatus==true){
+		features += 'status=yes';			
+	}else{
+		features += 'status=no';
+	}
+	//return window.showModalDialog(url,paramsObj,features);	
+	
+	return window.open(url,paramsObj,features);
+}
 
 /**
  * 弹出窗口 url地址,宽,高,参数对象,可调大小(默认:关),滚动条(开),居中(开),状态栏(关)
  */
-function ezModal(url,width,height,paramsObj,isResizable,isScroll,isCenter,isStatus){
+function ezModal2(url,width,height,paramsObj,isResizable,isScroll,isCenter,isStatus){
 
 	
 	// 为了处理缓存加入随机时间
@@ -124,8 +169,9 @@ function ezModal(url,width,height,paramsObj,isResizable,isScroll,isCenter,isStat
 	// var obj = new Object();
 	// obj.name = "参数";
 	
-	return window.showModalDialog(url,paramsObj,features);	
+	//return window.showModalDialog(url,paramsObj,features);	
 	
+	return window.open(url,paramsObj,features);
 }
 
 //显示

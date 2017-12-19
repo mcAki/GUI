@@ -10,41 +10,25 @@
   <body>
   <%@ include file="../common/incBanner.jsp" %>
   <br/>
-  <center><display:table id="idListTb" name="statisticsVOs"  style="width:900px;" sort="external" pagesize="${pageSize}" cellspacing="1"  class="list_tb" requestURI="${pageContext.request.contextPath}/statistics/list!listStatistics.do">
-			<display:column property="missionId" title="ID"></display:column>
-            <display:column property="missionSubject" title="项目主题" style="width:250px;" />
-          	<display:column property="applyAccepted" title="项目人员数"/>
-          	<display:column title="考勤人数">
-          		<c:choose>
-          			<c:when test="${null==idListTb.logCount}">0</c:when>
-          			<c:otherwise>${idListTb.logCount}</c:otherwise>
-          		</c:choose>
-          	</display:column>
-          	<display:column title="出勤人数">
-          		<c:choose>
-          			<c:when test="${null==idListTb.actuallyLog}">0</c:when>
-          			<c:otherwise>${idListTb.actuallyLog}</c:otherwise>
-          		</c:choose>
-          	</display:column>
-          	<display:column title="请假人数" >
-          		<c:choose>
-          			<c:when test="${null==idListTb.askoff1}">0</c:when>
-          			<c:otherwise>${idListTb.askoff1}</c:otherwise>
-          		</c:choose>
-          	</display:column>
-          	<display:column title="旷工人数">
-          		<c:choose>
-          			<c:when test="${null==idListTb.askoff2}">0</c:when>
-          			<c:otherwise>${idListTb.askoff2}</c:otherwise>
-          		</c:choose>
-          	</display:column>
-          	<display:column title="查看">
-          		<a href="${pageContext.request.contextPath}/statistics/list!listPersonalByMissionIdForStatistics.do?missionId=${idListTb.missionId}">查看人员考勤情况</a>
-          	</display:column>
+  <center><display:table export="true" id="idListTb" name="statisticsVOs"  style="width:900px;" sort="external" pagesize="${pageSize}" cellspacing="1"  class="list_tb" requestURI="${pageContext.request.contextPath}/statistics/list!listStatistics.do">
+  			<display:setProperty name="paging.banner.placement" value="bottom" />
+			<display:column property="goodsName" title="商品名称" />
+          	<display:column property="supplyName" title="供货商"/>
+          	<display:column property="stockPrice" title="进货价"/>
+          	<display:column property="retailPrice" title="销售价"/>
+          	<display:column property="goodsNo" title="销售数量"/>
+          	<display:column property="stockTotal" title="进货总价"/>
+          	<display:column property="retailTotal" title="销售总价"/>
+          	<display:column property="profits" title="利润"/>
+          	<display:column property="profitsTotal" title="合计利润"/>
+          	<display:setProperty name="export.excel.filename" value="times.xls"/> 
 		</display:table>
 	    </center>
 	<br/>	
 	<br/>
+	<script type="text/javascript">
+			displaytagExportLink();
+	    </script>
 <a href="user!add.html"></a>
 	<%@ include file="../common/incFooter.jsp" %>
   </body>

@@ -8,9 +8,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import com.lowagie.text.List;
-import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
-
 /* 
 * 元注解@Target,@Retention,@Documented,@Inherited 
 * 

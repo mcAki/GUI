@@ -25,15 +25,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td style="line-height:34px;"><input type="submit" onclick="javascript:form1.action='list!listStatistics.do'" value="统计所有人员"> 
-				<input type="submit" onclick="javascript:form1.action='list!statServiceCount.do?f=0'" value="时段内全员考勤次数">
-				<input type="submit" onclick="javascript:form1.action='list!statServiceCount.do?f=1'" value="时段内亚运赛会考勤次数">
-				<input type="submit" onclick="javascript:form1.action='list!statServiceCount.do?f=2'" value="时段内亚运城市文明考勤次数">
-				<input type="submit" onclick="javascript:form1.action='list!statServiceCount.do?f=3'" value="时段内亚运站点考勤次数"><br/>
-				<input type="submit" onclick="javascript:form1.action='list!statServiceCount.do?f=4'" value="时段内专项团队考勤次数">
-				<input type="submit" onclick="javascript:form1.action='list!statServiceCount.do?f=5'" value="时段内亚残赛会考勤次数">
-				<input type="submit" onclick="javascript:form1.action='list!statServiceCount.do?f=6'" value="时段内亚残城市文明考勤次数">
-				<input type="submit" onclick="javascript:form1.action='list!statServiceCount.do?f=7'" value="时段内亚残站点考勤次数">
+			<td style="line-height:34px;"><input type="submit" onclick="javascript:form1.action='list!listStatistics.do'" value="销售利润统计"> 
 			</td>
 		</tr>
 			<tr>

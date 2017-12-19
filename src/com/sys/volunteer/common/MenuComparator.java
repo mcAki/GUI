@@ -2,7 +2,7 @@ package com.sys.volunteer.common;
 
 import java.util.Comparator;
 
-import com.ages.model.Menutree;
+import com.sys.volunteer.pojo.Menutree;
 
 public class MenuComparator implements Comparator<Menutree> {
 

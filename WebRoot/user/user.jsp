@@ -5,6 +5,7 @@
   <head>		<link href="../css/criteria.css" rel="stylesheet" type="text/css">
 		<link href="../css/sys.css" rel="stylesheet" type="text/css">
 		<%@ include file="../common/incHead.jsp"%>
+		<link href="../css/main_new.css" rel="stylesheet" type="text/css">
 	
 	<script type="text/javascript">
 		function showTree(hasChildNodeFlag){
@@ -31,27 +32,72 @@
 			}
 		}
 	
+		function showGroupForLog(){
+		
+			//计算弹出位置
+			
+			height = 500;
+			width = 400;
+			//barHeight=30;
+			//top = (screen.Height/2) - (height/2) - barHeight;
+			//left = (screen.width/2) - (width/2);
+			
+	
+			//要查询的链接
+			var url="${pageContext.request.contextPath}/users/list!listGroupForLog.do?typeId=2";
+			//为了处理缓存加入随机时间
+			url += "&date=" + new Date().getTime();
+			
+			//弹出参数
+			var features = "resizable=yes;center=yes;status=yes;fullscreen=0;scroll=yes;dialogWidth="+ width +"px;dialogHeight=" + height + "px";
+			
+			//创建传入参数
+			var obj = new Object();
+			obj.name = "参数";
+			var returnVal = window.showModalDialog(url,obj,"dialogWidth=600px;dialogHeight=500px");
+			if(!$.isEmptyObject(returnVal)){
+				$("#userId").val(returnVal.uid);
+				$("#userName").val(returnVal.username);
+			}
+		}
 	</script>
   </head>  
-  <body>
+  <body style="min-width: 750px;">
   
   <%@ include file="../common/incBanner.jsp" %>
-  	<s:form name="strutsForm" action="doUpdate" namespace="/users" method="post">
+  <%--
+  	<s:form name="strutsForm" action="doAdd" namespace="/users" method="post">
   	<center><s:fielderror></s:fielderror></center>
   	<s:token/>
   	<s:hidden name="users.userId" />
   	<p>&nbsp;</p>
   	<p>&nbsp;</p>
   	<table width="670" border="0" align="center" cellspacing="3" class="form_tb">
-    <caption>志愿者信息</caption>
+    <caption>员工信息</caption>
   	  <tr>
   	    <td colspan="5"></td>
       </tr>
       
   	  <tr>
-  	    <td align="right">所属组ID:</td>
-  	    <td align="left"><s:select cssClass="txtW2" list="usergroups" name="users.usergroup.id" listKey="id" listValue="groupName" ></s:select></td>
+  	    <td align="right">所属组:</td>
+  	    <td align="left"><s:hidden name="users.usergroup.id" value="2"/>员工</td>
+  	    <td align="right">&nbsp;</td>
+        <td align="left">&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      
+       <tr>
+  	    <td align="right">商户等级:</td>
+  	    <td align="left"><s:hidden name="users.userLevel.userLevelId" value="1"/>不分等级</td>
   	    <td>&nbsp;</td>
+  	    <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      
+      <tr>
+  	    <td align="right">默认警示界限:(可空)</td>
+        <td align="left"><s:textfield name="users.defaultAlarm"/></td>
+        <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
       </tr>
@@ -59,71 +105,82 @@
   	  <tr>
   	    <td width="105" align="right">登录名称:</td>
   	    <td align="left"><s:textfield name="users.loginName"/></td>
-  	    <td align="right">登录密码:</td>
-  	    <td width="212" align="left"><s:password name="users.userPassword" /></td>
-        <td>&nbsp;</td>
-      </tr>
-      
-  	  <tr>
-  	    <td align="right">用户姓名:</td>
-  	    <td align="left"><s:textfield name="users.userName"/></td>
-  	    <td align="right" >用户英文名:</td>
-  	   	<td align="left"><s:textfield name="users.userEnglishName"/></td>
+  	    <td>&nbsp;</td>
+  	    <td>&nbsp;</td>
         <td>&nbsp;</td>
       </tr>
       
       <tr>
-       <td align="right">工作单位:</td>
-  	   <td align="left">&nbsp;</td>
+  	    <td align="right">登录密码:</td>
+  	    <td width="212" align="left"><s:password name="users.userPassword" /></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      
+      <tr>
+       <td align="right">用户名称:</td>
+  	   <td align="left"><s:textfield name="users.userName"/></td>
+       <td>&nbsp;</td>
+       <td>&nbsp;</td>
+       <td>&nbsp;</td>
+      </tr>
+      
+      <tr>
+       <td align="right">用户编码:</td>
+  	   <td align="left"><s:textfield name="users.userCode"/></td>
+       <td>&nbsp;</td>
+       <td>&nbsp;</td>
+       <td>&nbsp;</td>
+      </tr>
+      
+      <tr>
+       <td align="right">部门:</td>
+  	   <td align="left"><s:textfield name="users.department"/></td>
+       <td>&nbsp;</td>
+       <td>&nbsp;</td>
+       <td>&nbsp;</td>
+      </tr>
+      
+      <tr>
+       <td align="right">职位:</td>
+  	   <td align="left"><s:textfield name="users.position"/></td>
+       <td>&nbsp;</td>
+       <td>&nbsp;</td>
+       <td>&nbsp;</td>
+      </tr>
+      
+      <tr>
        <td align="right">email:</td>
   	   <td align="left" ><s:textfield name="users.email"/></td>
+       <td>&nbsp;</td>
+       <td>&nbsp;</td>
        <td>&nbsp;</td>
       </tr>
       
   	  <tr>
-  	    <td align="right">固定电话:</td>
-  	    <td align="left" >&nbsp;</td>
         <td align="right">手机号码:</td>
   	   	<td align="left" ><s:textfield name="users.mobile"/></td>
+        <td>&nbsp;</td>
+  	    <td>&nbsp;</td> 
         <td>&nbsp;</td>
       </tr>
       	
   	  <tr>
-  	    <td align="right" >所属地区:</td>
-  	    <td align="left" style=" white-space:nowrap;">
-  	   		<s:hidden id="districtId" name="districtId"></s:hidden>
-  	      	<s:textfield name="users.districtName" id="districtName"/>　
-  	    	<input icon="icon-btncom" align="left" type="button" value="选择" onClick="showTree(false)"/></td>
-  	    <td align="right">邮政编码:</td>
-        <td align="left">&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-       
-  	  <tr>
-  	   
         <td align="right" >性别:</td>
   	    <td align="left"><s:select cssClass="txtW2" name="users.gender" list="%{#{0:'===请选择性别===',1:'男',2:'女'}}"/></td>
-  	     <td align="right">用户状态:</td>
-  	    <td  align="left"><s:select cssClass="txtW2" name="users.state" list="stateMap" listKey="key" listValue="value"/></td> 
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
         <td>&nbsp;</td>
       </tr>
       
       <tr>
-        <td align="right"> 证件类型:</td>
-        <td align="left"><s:select cssClass="txtW2" name="users.idcardType" list="%{#{0:'==请选择证件类型==',1:'身份证',2:'护照',3:'中国军人证件',4:'中国武警证件',5:'台湾同胞来往大陆通行证',6:'港澳居民来往内地通行证'}}"></s:select>
-		<td align="right">证件号码:</td>
-        <td align="left"><s:textfield name="users.idcardCode"/></td>
-        <td>&nbsp;</td>  
-       </tr>
-       
-       <tr>
-        <td align="right"> 服务时长:</td>
-		<td align="left"><s:textfield name="users.serviceTime" /></td>
-		<td align="right">培训时长:</td>
-        <td align="left"><s:textfield name="users.trainingTime"/></td>  
+  	     <td align="right">用户类型:</td>
+  	    <td  align="left"><s:hidden name="users.userType" value="1" />员工</td> 
         <td>&nbsp;</td>
-       </tr>
-      
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
       
       <tr>
   	   <td align="right" >备注:</td>
@@ -140,6 +197,159 @@
 		
   </table>
   </s:form>
+   --%>
+   <div id="comInfo" class="fixed">
+			<div id="contain" class="fixed">
+				<s:include value="../system/head_div.jsp"></s:include>
+				<div class="tqyj fixed">
+					<div class="cxjj fixed">
+						<p class="jjcx">
+							增加员工
+						</p>
+					</div>
+					<div class="modify">
+					 <center>
+                       <s:form name="strutsForm" action="doAdd" namespace="/users" method="post">
+					  	<center><s:fielderror></s:fielderror></center>
+					  	<s:token/>
+					  	<s:hidden name="users.userId" />
+					  	<table width="670" border="0" align="center" cellspacing="3" class="form_tb">
+					  	  <tr>
+					  	    <td colspan="5"></td>
+					      </tr>
+					      
+					  	  <tr>
+					  	  	<td width="145" align="right">
+								用户组别:
+							</td>
+					  	    <s:hidden name="users.usergroup.id" id="userId"></s:hidden>
+							<td align="left" class="nowrap">
+								<s:textfield name="users.usergroup.groupName"
+									id="userName" readonly="true" />
+								<input icon="icon-btncom" type="button" value="选择"
+									onclick='showGroupForLog();'/>
+							</td>
+							<td>&nbsp;</td>
+					        <td>&nbsp;</td>
+					        <td>&nbsp;</td>
+					      </tr>
+					      
+					       <tr>
+					  	    <td align="right">商户等级:</td>
+					  	    <td align="left"><s:hidden name="users.userLevel.userLevelId" value="1"/>不分等级</td>
+					  	    <td>&nbsp;</td>
+					  	    <td>&nbsp;</td>
+					        <td>&nbsp;</td>
+					      </tr>
+					      
+					      <tr>
+					  	    <td align="right">默认警示界限:(可空)</td>
+					        <td align="left"><s:textfield name="users.defaultAlarm"/></td>
+					        <td>&nbsp;</td>
+					        <td>&nbsp;</td>
+					        <td>&nbsp;</td>
+					      </tr>
+					      
+					  	  <tr>
+					  	    <td width="105" align="right">登录名称:</td>
+					  	    <td align="left"><s:textfield name="users.loginName"/></td>
+					  	    <td>&nbsp;</td>
+					  	    <td>&nbsp;</td>
+					        <td>&nbsp;</td>
+					      </tr>
+					      
+					      <tr>
+					  	    <td align="right">登录密码:</td>
+					  	    <td width="212" align="left"><s:password name="users.userPassword" /></td>
+					        <td>&nbsp;</td>
+					        <td>&nbsp;</td>
+					        <td>&nbsp;</td>
+					      </tr>
+					      
+					      <tr>
+					       <td align="right">用户名称:</td>
+					  	   <td align="left"><s:textfield name="users.userName"/></td>
+					       <td>&nbsp;</td>
+					       <td>&nbsp;</td>
+					       <td>&nbsp;</td>
+					      </tr>
+					      
+					      <tr>
+					       <td align="right">用户编码:</td>
+					  	   <td align="left"><s:textfield name="users.userCode"/></td>
+					       <td>&nbsp;</td>
+					       <td>&nbsp;</td>
+					       <td>&nbsp;</td>
+					      </tr>
+					      
+					      <tr>
+					       <td align="right">部门:</td>
+					  	   <td align="left"><s:textfield name="users.department"/></td>
+					       <td>&nbsp;</td>
+					       <td>&nbsp;</td>
+					       <td>&nbsp;</td>
+					      </tr>
+					      
+					      <tr>
+					       <td align="right">职位:</td>
+					  	   <td align="left"><s:textfield name="users.position"/></td>
+					       <td>&nbsp;</td>
+					       <td>&nbsp;</td>
+					       <td>&nbsp;</td>
+					      </tr>
+					      
+					      <tr>
+					       <td align="right">email:</td>
+					  	   <td align="left" ><s:textfield name="users.email"/></td>
+					       <td>&nbsp;</td>
+					       <td>&nbsp;</td>
+					       <td>&nbsp;</td>
+					      </tr>
+					      
+					  	  <tr>
+					        <td align="right">手机号码:</td>
+					  	   	<td align="left" ><s:textfield name="users.mobile"/></td>
+					        <td>&nbsp;</td>
+					  	    <td>&nbsp;</td> 
+					        <td>&nbsp;</td>
+					      </tr>
+					      	
+					  	  <tr>
+					        <td align="right" >性别:</td>
+					  	    <td align="left"><s:select cssClass="txtW2" name="users.gender" list="%{#{0:'===请选择性别===',1:'男',2:'女'}}"/></td>
+					        <td>&nbsp;</td>
+					        <td>&nbsp;</td>
+					        <td>&nbsp;</td>
+					      </tr>
+					      
+					      <tr>
+					  	     <td align="right">用户类型:</td>
+					  	    <td  align="left"><s:hidden name="users.userType" value="1" />员工</td> 
+					        <td>&nbsp;</td>
+					        <td>&nbsp;</td>
+					        <td>&nbsp;</td>
+					      </tr>
+					      
+					      <tr>
+					  	   <td align="right" >备注:</td>
+					  	   <td colspan="4" align="left"><s:textarea name="users.remark" cssClass="txtW5" rows="4"></s:textarea></td>
+					       
+					      </tr>
+					      
+					      <tr>
+					  	    <td colspan="2" align="center"><s:submit icon="icon-apply" value="提交"></s:submit>
+					        </td>
+					  	    <td colspan="2" align="center">&nbsp;<s:reset icon="icon-reload" value="重设"></s:reset></td>
+					        <td>&nbsp;</td>
+					      </tr>
+							
+					  </table>
+					  </s:form>
+					  </center>
+					</div>
+				</div>
+			</div>
+   </div>
 	<%@ include file="../common/incFooter.jsp" %>
   </body>
 </html>
